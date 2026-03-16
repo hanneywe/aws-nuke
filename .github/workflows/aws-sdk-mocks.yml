@@ -15,13 +15,13 @@ jobs:
     runs-on: ubuntu-latest
     if: github.actor == 'renovate[bot]'
     steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           persist-credentials: false
           fetch-depth: 0
-      - uses: actions/setup-go@7a3fe6cf4cb3a834922a1244abfce67bcef6a0c5 # v6
+      - uses: actions/setup-go@4a3601121dd01d1626a1e23e37211e3254c1c06c # v6
         with:
-          go-version: '1.25.x'
+          go-version: '1.26.x'
       - name: generate-token
         id: generate_token
         uses: tibdex/github-app-token@3beb63f4bd073e61482598c45c71c1019b59b73a # v2
@@ -42,7 +42,7 @@ jobs:
           git add .
           git commit -a -m 'chore: update mocks'
       - name: git-push
-        uses: ad-m/github-push-action@master
+        uses: ad-m/github-push-action@d30dc2d070765d7e509df00c34c5fa2dd636ff74 # master
         with:
           github_token: ${{ steps.generate_token.outputs.token }}
           branch: ${{ github.ref }}
