@@ -70,6 +70,8 @@ github.com/aws/aws-sdk-go-v2/service/networkfirewall v1.53.0 h1:FHl1QPk+MTUjcbGt
 github.com/aws/aws-sdk-go-v2/service/networkfirewall v1.53.0/go.mod h1:EiHBjTVCeOUX045RTpHUuqrtexp4OtSbMLj+nXiaaHw=
 github.com/aws/aws-sdk-go-v2/service/ram v1.34.19 h1:KgzHjJvrAw5RQ5tXEyUX1B9zcPuWiCs7h/aT0Q6XYTE=
 github.com/aws/aws-sdk-go-v2/service/ram v1.34.19/go.mod h1:wHbYtm0qUAphMlG61fmCj0qJyVFgYJaHyYcI1sxvLxI=
+github.com/aws/aws-sdk-go-v2/service/resiliencehub v1.35.12 h1:O3/32Vo3r/6yDBdiD5elmgvJoeYzfiVaRxrhvM4qMCI=
+github.com/aws/aws-sdk-go-v2/service/resiliencehub v1.35.12/go.mod h1:qxCa5kgRpzMEnRpVIXCTBbl2O7A+/VeTv6+J3XCBu/Q=
 github.com/aws/aws-sdk-go-v2/service/resourceexplorer2 v1.23.4 h1:EVrAF1LHQJB20OzL/7J9EKMunMmYMIxbwJrxTFgBO8U=
 github.com/aws/aws-sdk-go-v2/service/resourceexplorer2 v1.23.4/go.mod h1:zbAyvrSImouZkBlIUu+QYfLz10VbvZb1d8R4zfLWbs4=
 github.com/aws/aws-sdk-go-v2/service/route53 v1.62.4 h1:64aYPyHg3RjLvnMMSYQSg7aP+r1WRCPIS9SP9KfHjWg=
