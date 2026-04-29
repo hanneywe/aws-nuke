@@ -28,6 +28,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/lakeformation v1.46.6
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.88.5
 	github.com/aws/aws-sdk-go-v2/service/mgn v1.37.6
+	github.com/aws/aws-sdk-go-v2/service/migrationhubrefactorspaces v1.25.20
 	github.com/aws/aws-sdk-go-v2/service/migrationhubstrategy v1.26.21
 	github.com/aws/aws-sdk-go-v2/service/neptune v1.44.3
 	github.com/aws/aws-sdk-go-v2/service/neptunegraph v1.17.6
