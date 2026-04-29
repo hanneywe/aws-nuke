@@ -1,0 +1,49 @@
+service: auditmanager
+resource: account-registration
+resourceName: AuditManagerAccountRegistration
+scope: account
+sdkPackage: auditmanager
+
+list:
+  strategy: singleton
+  operation: GetAccountStatus
+  override: |
+    opts := o.(*nuke.ListerOpts)
+    svc := l.svc
+    if svc == nil {
+        svc = auditmanager.NewFromConfig(*opts.Config)
+    }
+    var resources []resource.Resource
+
+    resp, err := svc.GetAccountStatus(ctx, &auditmanager.GetAccountStatusInput{})
+    if err != nil {
+        return nil, err
+    }
+
+    if resp.Status == auditmanagertypes.AccountStatusActive {
+        status := string(resp.Status)
+        resources = append(resources, &AuditManagerAccountRegistration{
+            svc:    svc,
+            Status: &status,
+        })
+    }
+
+    return resources, nil
+
+delete:
+  operation: DeregisterAccount
+  inputFields:
+    - Status
+  override: |
+    _, err := r.svc.DeregisterAccount(ctx, &auditmanager.DeregisterAccountInput{})
+    return err
+
+extraImports:
+  - auditmanagertypes "github.com/aws/aws-sdk-go-v2/service/auditmanager/types"
+
+fields:
+  - name: Status
+    type: "*string"
+
+stringRepresentation:
+  field: Status
