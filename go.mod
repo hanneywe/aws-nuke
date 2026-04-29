@@ -36,6 +36,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.97.3
 	github.com/aws/aws-sdk-go-v2/service/s3control v1.52.7
 	github.com/aws/aws-sdk-go-v2/service/shield v1.34.18
+	github.com/aws/aws-sdk-go-v2/service/signer v1.32.5
 	github.com/aws/aws-sdk-go-v2/service/snowball v1.35.21
 	github.com/aws/aws-sdk-go-v2/service/sns v1.39.15
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.68.4
