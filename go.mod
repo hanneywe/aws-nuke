@@ -13,6 +13,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/apigateway v1.28.12
 	github.com/aws/aws-sdk-go-v2/service/applicationdiscoveryservice v1.35.14
 	github.com/aws/aws-sdk-go-v2/service/appsync v1.42.3
+	github.com/aws/aws-sdk-go-v2/service/backupgateway v1.15.3
 	github.com/aws/aws-sdk-go-v2/service/batch v1.62.0
 	github.com/aws/aws-sdk-go-v2/service/bcmpricingcalculator v1.10.9
 	github.com/aws/aws-sdk-go-v2/service/bedrockagentcorecontrol v1.14.1

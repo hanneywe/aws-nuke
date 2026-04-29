@@ -26,6 +26,8 @@ github.com/aws/aws-sdk-go-v2/service/applicationdiscoveryservice v1.35.14 h1:I0j
 github.com/aws/aws-sdk-go-v2/service/applicationdiscoveryservice v1.35.14/go.mod h1:T21micVPTEsCbELIE419Gv1eLEM5onJGA1XKA6whLNA=
 github.com/aws/aws-sdk-go-v2/service/appsync v1.42.3 h1:Q903rtU9x/OmFMqXGm3033459yx/M1F9UcOWwoowH+s=
 github.com/aws/aws-sdk-go-v2/service/appsync v1.42.3/go.mod h1:n3rcdK67R1TkgyXz+48uIUlpiMUwUd7pdVADSEZ5FGA=
+github.com/aws/aws-sdk-go-v2/service/backupgateway v1.15.3 h1:knoPyUJGnWhk+zsOauNX7RAw36vscx79RUz4Ozc/oj8=
+github.com/aws/aws-sdk-go-v2/service/backupgateway v1.15.3/go.mod h1:QYAAstxGfiJbzkqshYEkWOkr8cnphfX+2BgZx60E7Tc=
 github.com/aws/aws-sdk-go-v2/service/batch v1.62.0 h1:iITe+/Z5bvjTHS3pzSykcfiozcMMuhTTG04R/6xM37w=
 github.com/aws/aws-sdk-go-v2/service/batch v1.62.0/go.mod h1:nzRjG8jjDCzXiP3nuQuqdFGazWCRcZIFtnnE2UxiGFs=
 github.com/aws/aws-sdk-go-v2/service/bcmpricingcalculator v1.10.9 h1:ZhZL9nbykBPEvtCRIOYfGMPZ7nRm0YqnR4/eDgy8o1Y=
@@ -322,6 +324,8 @@ github.com/fatih/color v1.18.0 h1:S8gINlzdQ840/4pfAwic/ZE0djQEH3wM94VfqLTZcOM=
 github.com/fatih/color v1.18.0/go.mod h1:4FelSpRwEGDpQ12mAdzqdOukCy4u8WUtOY6lkT/6HfU=
 github.com/golang/mock v1.6.0 h1:ErTB+efbowRARo13NNdxyJji2egdxLGQhRaY+DUumQc=
 github.com/golang/mock v1.6.0/go.mod h1:p6yTPP+5HYm5mzsMV8JkE6ZKdX+/wYM6Hr+LicevLPs=
+github.com/google/go-cmp v0.5.8 h1:e6P7q2lk1O+qJJb4BtCQXlK8vWEO8V1ZeuEdJNOqZyg=
+github.com/google/go-cmp v0.5.8/go.mod h1:17dUlkBOakJ0+DkrSSNjCkIjxS6bF9zb3elmeNGIjoY=
 github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/gotidy/ptr v1.4.0 h1:7++suUs+HNHMnyz6/AW3SE+4EnBhupPSQTSI7QNijVc=
