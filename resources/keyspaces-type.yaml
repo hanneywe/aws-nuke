@@ -1,0 +1,76 @@
+service: keyspaces
+resource: type
+resourceName: KeyspacesType
+scope: account
+sdkPackage: keyspaces
+
+list:
+  strategy: nested
+  levels:
+    - operation: ListKeyspaces
+      pagination: paginator
+      itemsField: Keyspaces
+      iteratorVar: ks
+    - operation: ListTypes
+      pagination: paginator
+      itemsField: Types
+      iteratorVar: typeName
+      parentInputMapping:
+        KeyspaceName: ks.KeyspaceName
+  override: |
+    opts := o.(*nuke.ListerOpts)
+    svc := l.svc
+    if svc == nil {
+        svc = keyspaces.NewFromConfig(*opts.Config)
+    }
+    var resources []resource.Resource
+
+    ksPaginator := keyspaces.NewListKeyspacesPaginator(svc, &keyspaces.ListKeyspacesInput{})
+
+    for ksPaginator.HasMorePages() {
+        ksResp, err := ksPaginator.NextPage(ctx)
+        if err != nil {
+            return nil, err
+        }
+
+        for _, ks := range ksResp.Keyspaces {
+            typeNamePaginator := keyspaces.NewListTypesPaginator(svc, &keyspaces.ListTypesInput{
+                KeyspaceName: ks.KeyspaceName,
+            })
+
+            for typeNamePaginator.HasMorePages() {
+                typeNameResp, err := typeNamePaginator.NextPage(ctx)
+                if err != nil {
+                    return nil, err
+                }
+
+                for _, typeName := range typeNameResp.Types {
+                    resources = append(resources, &KeyspacesType{
+                        svc:          svc,
+                        KeyspaceName: ks.KeyspaceName,
+                        TypeName:     aws.String(typeName),
+                    })
+                }
+            }
+        }
+    }
+
+    return resources, nil
+
+delete:
+  operation: DeleteType
+  inputFields:
+    - KeyspaceName
+    - TypeName
+
+fields:
+  - name: KeyspaceName
+    type: "*string"
+  - name: TypeName
+    type: "*string"
+
+stringRepresentation:
+  format: "%s/%s"
+  fields:
+    - KeyspaceName
+    - TypeName
