@@ -30,6 +30,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/mgn v1.37.6
 	github.com/aws/aws-sdk-go-v2/service/neptunegraph v1.17.6
 	github.com/aws/aws-sdk-go-v2/service/networkfirewall v1.53.0
+	github.com/aws/aws-sdk-go-v2/service/networkmonitor v1.13.13
 	github.com/aws/aws-sdk-go-v2/service/notificationscontacts v1.5.23
 	github.com/aws/aws-sdk-go-v2/service/omics v1.38.11
 	github.com/aws/aws-sdk-go-v2/service/opensearch v1.60.1
