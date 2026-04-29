@@ -28,6 +28,8 @@ github.com/aws/aws-sdk-go-v2/service/appsync v1.42.3 h1:Q903rtU9x/OmFMqXGm303345
 github.com/aws/aws-sdk-go-v2/service/appsync v1.42.3/go.mod h1:n3rcdK67R1TkgyXz+48uIUlpiMUwUd7pdVADSEZ5FGA=
 github.com/aws/aws-sdk-go-v2/service/bedrockagentcorecontrol v1.14.1 h1:boU3IIsKnHsKzqavdB/xR5bmp8tBPDPkg+FSBxqqEgY=
 github.com/aws/aws-sdk-go-v2/service/bedrockagentcorecontrol v1.14.1/go.mod h1:rSP65Gc7ucwUaO12JTPl8o835CZlN8d3qUFcdT/6dHE=
+github.com/aws/aws-sdk-go-v2/service/bedrockdataautomation v1.13.4 h1:Y/Rl4iD2/jUzfnnGeee+BXEmKz1y/FW60ysSjdYn/Ik=
+github.com/aws/aws-sdk-go-v2/service/bedrockdataautomation v1.13.4/go.mod h1:opaBA+ODHHfCbtybWT0bV4MBL/1ascYnUKfp3k/EzKw=
 github.com/aws/aws-sdk-go-v2/service/bedrockruntime v1.50.5 h1:ZGTl4Rxft1uyENAlGESY04hMzE4cLLNUPI7dGw08haw=
 github.com/aws/aws-sdk-go-v2/service/bedrockruntime v1.50.5/go.mod h1:jnugA+VgESQGgXuEKK6zVToET/DtODq7LQYpe+BkKT4=
 github.com/aws/aws-sdk-go-v2/service/billingconductor v1.28.4 h1:EcOwQR3IsES0zCHYjLiLW8QyQ64A8Nsco4zVflYCFSM=
