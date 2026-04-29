@@ -28,6 +28,7 @@ var GlobalServices = map[string]struct{}{
 	"Route 53":                 {},
 	"WAF":                      {}, // WAF Classic (global)
 	"CloudFront KeyValueStore": {},
+	"billingconductor":         {},
 }
 
 // IsGlobalService returns true if the service should only run in global region
