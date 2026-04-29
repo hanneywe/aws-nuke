@@ -5,12 +5,12 @@ import (
 
 	"github.com/sirupsen/logrus"
 
-	"github.com/aws/aws-sdk-go/aws"                       //nolint:staticcheck
-	"github.com/aws/aws-sdk-go/service/resourceexplorer2" //nolint:staticcheck
+	"github.com/aws/aws-sdk-go-v2/service/resourceexplorer2"
+	"github.com/aws/aws-sdk-go-v2/service/resourceexplorer2/types"
 
 	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
-	"github.com/ekristen/libnuke/pkg/types"
+	libTypes "github.com/ekristen/libnuke/pkg/types"
 
 	"github.com/ekristen/aws-nuke/v3/pkg/nuke"
 )
@@ -26,30 +26,32 @@ func init() {
 	})
 }
 
-type ResourceExplorer2IndexLister struct{}
+type ResourceExplorer2IndexLister struct {
+	svc ResourceExplorer2Client
+}
 
-func (l *ResourceExplorer2IndexLister) List(_ context.Context, o interface{}) ([]resource.Resource, error) {
+func (l *ResourceExplorer2IndexLister) List(ctx context.Context, o interface{}) ([]resource.Resource, error) {
 	opts := o.(*nuke.ListerOpts)
-	svc := resourceexplorer2.New(opts.Session)
-	var resources []resource.Resource
 
-	params := &resourceexplorer2.ListIndexesInput{
-		Regions:    aws.StringSlice([]string{opts.Region.Name}),
-		MaxResults: aws.Int64(100),
+	svc := l.svc
+	if svc == nil {
+		svc = resourceexplorer2.NewFromConfig(*opts.Config)
 	}
 
+	var resources []resource.Resource
+
+	params := &resourceexplorer2.ListIndexesInput{}
 	for {
-		output, err := svc.ListIndexes(params)
+		resp, err := svc.ListIndexes(ctx, params)
 		if err != nil {
 			return nil, err
 		}
 
-		for _, index := range output.Indexes {
-			var tags map[string]*string
-			tagResp, err := svc.ListTagsForResource(
-				&resourceexplorer2.ListTagsForResourceInput{
-					ResourceArn: index.Arn,
-				})
+		for i := range resp.Indexes {
+			tags := make(map[string]string)
+			tagResp, err := svc.ListTagsForResource(ctx, &resourceexplorer2.ListTagsForResourceInput{
+				ResourceArn: resp.Indexes[i].Arn,
+			})
 			if err != nil {
 				logrus.WithError(err).Error("unable to list tags for resource")
 			}
@@ -58,42 +60,42 @@ func (l *ResourceExplorer2IndexLister) List(_ context.Context, o interface{}) ([
 			}
 
 			resources = append(resources, &ResourceExplorer2Index{
-				svc:  svc,
-				ARN:  index.Arn,
-				Type: index.Type,
-				Tags: tags,
+				svc:    svc,
+				ARN:    resp.Indexes[i].Arn,
+				Region: resp.Indexes[i].Region,
+				Type:   resp.Indexes[i].Type,
+				Tags:   tags,
 			})
 		}
 
-		if output.NextToken == nil {
+		if resp.NextToken == nil {
 			break
 		}
-
-		params.SetNextToken(aws.StringValue(output.NextToken))
+		params.NextToken = resp.NextToken
 	}
 
 	return resources, nil
 }
 
 type ResourceExplorer2Index struct {
-	svc  *resourceexplorer2.ResourceExplorer2
-	ARN  *string
-	Type *string
-	Tags map[string]*string
+	svc    ResourceExplorer2Client
+	ARN    *string
+	Region *string
+	Type   types.IndexType `property:"name=Type"`
+	Tags   map[string]string
 }
 
-func (r *ResourceExplorer2Index) Remove(_ context.Context) error {
-	_, err := r.svc.DeleteIndex(&resourceexplorer2.DeleteIndexInput{
+func (r *ResourceExplorer2Index) Remove(ctx context.Context) error {
+	_, err := r.svc.DeleteIndex(ctx, &resourceexplorer2.DeleteIndexInput{
 		Arn: r.ARN,
 	})
-
 	return err
+}
+
+func (r *ResourceExplorer2Index) Properties() libTypes.Properties {
+	return libTypes.NewPropertiesFromStruct(r)
 }
 
 func (r *ResourceExplorer2Index) String() string {
 	return *r.ARN
-}
-
-func (r *ResourceExplorer2Index) Properties() types.Properties {
-	return types.NewPropertiesFromStruct(r)
 }
