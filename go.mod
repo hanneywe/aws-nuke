@@ -16,6 +16,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/bedrockagentcorecontrol v1.14.1
 	github.com/aws/aws-sdk-go-v2/service/bedrockruntime v1.50.5
 	github.com/aws/aws-sdk-go-v2/service/cloudfront v1.44.12
+	github.com/aws/aws-sdk-go-v2/service/cloudwatch v1.56.0
 	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.67.0
 	github.com/aws/aws-sdk-go-v2/service/codeartifact v1.38.22
 	github.com/aws/aws-sdk-go-v2/service/codebuild v1.68.13
