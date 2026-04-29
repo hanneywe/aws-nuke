@@ -1,0 +1,37 @@
+service: elasticache
+resource: serverless-cache-snapshot
+resourceName: ElastiCacheServerlessCacheSnapshot
+scope: account
+sdkPackage: elasticache
+
+list:
+  strategy: flat
+  operation: DescribeServerlessCacheSnapshots
+  pagination: paginator
+  itemsField: ServerlessCacheSnapshots
+  itemType: ServerlessCacheSnapshot
+
+delete:
+  operation: DeleteServerlessCacheSnapshot
+  inputFields:
+    - ServerlessCacheSnapshotName
+
+fields:
+  - name: ServerlessCacheSnapshotName
+    type: "*string"
+    fromList: ServerlessCacheSnapshotName
+  - name: ARN
+    type: "*string"
+    fromList: ARN
+  - name: Status
+    type: "*string"
+    fromList: Status
+  - name: SnapshotType
+    type: "*string"
+    fromList: SnapshotType
+  - name: CreateTime
+    type: "*time.Time"
+    fromList: CreateTime
+
+stringRepresentation:
+  field: ServerlessCacheSnapshotName

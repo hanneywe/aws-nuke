@@ -23,6 +23,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/ecs v1.54.6
 	github.com/aws/aws-sdk-go-v2/service/efs v1.35.4
 	github.com/aws/aws-sdk-go-v2/service/eks v1.74.10
+	github.com/aws/aws-sdk-go-v2/service/elasticache v1.51.12
 	github.com/aws/aws-sdk-go-v2/service/elasticsearchservice v1.40.1
 	github.com/aws/aws-sdk-go-v2/service/emr v1.59.0
 	github.com/aws/aws-sdk-go-v2/service/emrcontainers v1.40.17
