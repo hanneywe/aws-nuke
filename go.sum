@@ -46,6 +46,8 @@ github.com/aws/aws-sdk-go-v2/service/efs v1.35.4 h1:QJHwC9X5TxJJGdesIJP65gAsu0gX
 github.com/aws/aws-sdk-go-v2/service/efs v1.35.4/go.mod h1:XT6hcgC1HV33EBGPWdXnbgyeqND4k43qX3argLyEZM8=
 github.com/aws/aws-sdk-go-v2/service/eks v1.74.10 h1:bkpRyAmbBYuMKx4ZfmVLRdTwewAXGy1S0LrvH1BFz2M=
 github.com/aws/aws-sdk-go-v2/service/eks v1.74.10/go.mod h1:lrJRZkSj6nIXH/SN3gbGQp4i4AtNyha0wT7VgYZ3KDw=
+github.com/aws/aws-sdk-go-v2/service/groundstation v1.40.3 h1:/H/1D4Hr1y4kziQ4kFMJxPL1u7oVMMGpkED0fE56/Jw=
+github.com/aws/aws-sdk-go-v2/service/groundstation v1.40.3/go.mod h1:2Aon83AeKY9SabJCO091/E5Tgj6zAZUtsgPNDp45vP4=
 github.com/aws/aws-sdk-go-v2/service/healthlake v1.36.13 h1:cbqLsNswH9QO8LSdtFMCHnxsFUnOetEmqS9iW13Oeuw=
 github.com/aws/aws-sdk-go-v2/service/healthlake v1.36.13/go.mod h1:YOWjZmn6qWGxswDMs3f2e6frWazsb6KbTmkPbLYJvCo=
 github.com/aws/aws-sdk-go-v2/service/iam v1.38.10 h1:u/MwkFwRkKRDvy7D76/khJTk8HMp4mC5sZKErU53jos=
