@@ -1,0 +1,28 @@
+service: entityresolution
+resource: schema-mapping
+resourceName: EntityResolutionSchemaMapping
+scope: account
+sdkPackage: entityresolution
+
+list:
+  strategy: flat
+  operation: ListSchemaMappings
+  pagination: paginator
+  itemsField: SchemaList
+  itemType: SchemaMappingSummary
+
+delete:
+  operation: DeleteSchemaMapping
+  inputFields:
+    - SchemaName
+
+fields:
+  - name: SchemaName
+    type: "*string"
+    fromList: SchemaName
+  - name: SchemaArn
+    type: "*string"
+    fromList: SchemaArn
+
+stringRepresentation:
+  field: SchemaName
