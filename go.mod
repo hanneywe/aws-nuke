@@ -35,6 +35,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/route53resolver v1.41.5
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.97.3
 	github.com/aws/aws-sdk-go-v2/service/s3control v1.52.7
+	github.com/aws/aws-sdk-go-v2/service/scheduler v1.17.22
 	github.com/aws/aws-sdk-go-v2/service/schemas v1.34.11
 	github.com/aws/aws-sdk-go-v2/service/ses v1.34.23
 	github.com/aws/aws-sdk-go-v2/service/sesv2 v1.60.1
