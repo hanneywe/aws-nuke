@@ -2,6 +2,7 @@ package resources
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/aws/aws-sdk-go/aws"         //nolint:staticcheck
 	"github.com/aws/aws-sdk-go/service/rds" //nolint:staticcheck
@@ -59,6 +60,13 @@ func (l *RDSDBSubnetGroupLister) List(_ context.Context, o interface{}) ([]resou
 	}
 
 	return resources, nil
+}
+
+func (i *RDSDBSubnetGroup) Filter() error {
+	if i.name != nil && *i.name == "default" {
+		return fmt.Errorf("cannot delete default subnet group")
+	}
+	return nil
 }
 
 func (i *RDSDBSubnetGroup) Remove(_ context.Context) error {
