@@ -40,6 +40,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/sts v1.34.1
 	github.com/aws/aws-sdk-go-v2/service/textract v1.40.17
 	github.com/aws/aws-sdk-go-v2/service/transfer v1.55.5
+	github.com/aws/aws-sdk-go-v2/service/vpclattice v1.20.10
 	github.com/aws/aws-sdk-go-v2/service/wellarchitected v1.39.21
 	github.com/aws/aws-sdk-go-v2/service/workspaces v1.67.2
 	github.com/aws/aws-sdk-go-v2/service/workspacesweb v1.38.3
