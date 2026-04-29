@@ -1,0 +1,27 @@
+service: transfer
+resource: connector
+resourceName: TransferConnector
+scope: account
+sdkPackage: transfer
+
+list:
+  strategy: flat
+  operation: ListConnectors
+  pagination: paginator
+  itemsField: Connectors
+
+delete:
+  operation: DeleteConnector
+  inputFields:
+    - ConnectorId
+
+fields:
+  - name: ConnectorId
+    type: "*string"
+    fromList: ConnectorId
+  - name: Url
+    type: "*string"
+    fromList: Url
+
+stringRepresentation:
+  field: ConnectorId

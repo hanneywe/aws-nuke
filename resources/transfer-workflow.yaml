@@ -1,0 +1,30 @@
+service: transfer
+resource: workflow
+resourceName: TransferWorkflow
+scope: account
+sdkPackage: transfer
+
+list:
+  strategy: flat
+  operation: ListWorkflows
+  pagination: paginator
+  itemsField: Workflows
+
+delete:
+  operation: DeleteWorkflow
+  inputFields:
+    - WorkflowId
+
+fields:
+  - name: WorkflowId
+    type: "*string"
+    fromList: WorkflowId
+  - name: Description
+    type: "*string"
+    fromList: Description
+  - name: Arn
+    type: "*string"
+    fromList: Arn
+
+stringRepresentation:
+  field: WorkflowId

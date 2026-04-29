@@ -1,0 +1,47 @@
+service: transfer
+resource: ssh-public-key
+resourceName: TransferSshPublicKey
+scope: account
+sdkPackage: transfer
+
+list:
+  strategy: nested
+  levels:
+    - operation: ListServers
+      pagination: paginator
+      itemsField: Servers
+      iteratorVar: server
+    - operation: ListUsers
+      pagination: paginator
+      itemsField: Users
+      iteratorVar: user
+      parentInputMapping:
+        ServerId: server.ServerId
+    - operation: DescribeUser
+      pagination: ""
+      itemsField: User.SshPublicKeys
+      iteratorVar: key
+      parentInputMapping:
+        ServerId: server.ServerId
+        UserName: user.UserName
+
+delete:
+  operation: DeleteSshPublicKey
+  inputFields:
+    - ServerId
+    - UserName
+    - SshPublicKeyId
+
+fields:
+  - name: ServerId
+    type: "*string"
+    fromList: server.ServerId
+  - name: UserName
+    type: "*string"
+    fromList: user.UserName
+  - name: SshPublicKeyId
+    type: "*string"
+    fromList: key.SshPublicKeyId
+
+stringRepresentation:
+  field: SshPublicKeyId
