@@ -13,6 +13,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/apigateway v1.28.12
 	github.com/aws/aws-sdk-go-v2/service/applicationdiscoveryservice v1.35.14
 	github.com/aws/aws-sdk-go-v2/service/appsync v1.42.3
+	github.com/aws/aws-sdk-go-v2/service/athena v1.57.3
 	github.com/aws/aws-sdk-go-v2/service/auditmanager v1.46.13
 	github.com/aws/aws-sdk-go-v2/service/b2bi v1.0.0-preview.99
 	github.com/aws/aws-sdk-go-v2/service/backup v1.55.0
