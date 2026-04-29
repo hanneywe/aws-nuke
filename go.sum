@@ -26,6 +26,8 @@ github.com/aws/aws-sdk-go-v2/service/applicationdiscoveryservice v1.35.14 h1:I0j
 github.com/aws/aws-sdk-go-v2/service/applicationdiscoveryservice v1.35.14/go.mod h1:T21micVPTEsCbELIE419Gv1eLEM5onJGA1XKA6whLNA=
 github.com/aws/aws-sdk-go-v2/service/appsync v1.42.3 h1:Q903rtU9x/OmFMqXGm3033459yx/M1F9UcOWwoowH+s=
 github.com/aws/aws-sdk-go-v2/service/appsync v1.42.3/go.mod h1:n3rcdK67R1TkgyXz+48uIUlpiMUwUd7pdVADSEZ5FGA=
+github.com/aws/aws-sdk-go-v2/service/backup v1.55.0 h1:p/1UY5ijuHkzGNTmRyvfU5t/fZK0nwIdWzSWcIuln1E=
+github.com/aws/aws-sdk-go-v2/service/backup v1.55.0/go.mod h1:H59xrHDDsJO4OMJ9bznKryHxZdMOvoZb+4dKW+A9TKo=
 github.com/aws/aws-sdk-go-v2/service/backupgateway v1.15.3 h1:knoPyUJGnWhk+zsOauNX7RAw36vscx79RUz4Ozc/oj8=
 github.com/aws/aws-sdk-go-v2/service/backupgateway v1.15.3/go.mod h1:QYAAstxGfiJbzkqshYEkWOkr8cnphfX+2BgZx60E7Tc=
 github.com/aws/aws-sdk-go-v2/service/batch v1.62.0 h1:iITe+/Z5bvjTHS3pzSykcfiozcMMuhTTG04R/6xM37w=
