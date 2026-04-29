@@ -72,6 +72,8 @@ github.com/aws/aws-sdk-go-v2/service/ram v1.34.19 h1:KgzHjJvrAw5RQ5tXEyUX1B9zcPu
 github.com/aws/aws-sdk-go-v2/service/ram v1.34.19/go.mod h1:wHbYtm0qUAphMlG61fmCj0qJyVFgYJaHyYcI1sxvLxI=
 github.com/aws/aws-sdk-go-v2/service/route53profiles v1.4.17 h1:x19QmT0wHVz5v48OqvGY1B18Pdw3Z1XHsc/+eLWRUQ8=
 github.com/aws/aws-sdk-go-v2/service/route53profiles v1.4.17/go.mod h1:Fw3q+gxXdlWm/chYEtIbeILj3bqObPLm7fbn/bPUXaE=
+github.com/aws/aws-sdk-go-v2/service/route53recoveryreadiness v1.26.20 h1:NBDRALrm37haVjhpmc0PEBz4XwJcV+brUEoxKHn/tjw=
+github.com/aws/aws-sdk-go-v2/service/route53recoveryreadiness v1.26.20/go.mod h1:oH6/tKCJd/U7qxQAzIz+fdKjIqW+BPm+nHenc4tkm8Y=
 github.com/aws/aws-sdk-go-v2/service/route53resolver v1.41.5 h1:JJipBAyXEcBqwCwgz3nLxGRHC+IlS8EcQd8edjnsp0w=
 github.com/aws/aws-sdk-go-v2/service/route53resolver v1.41.5/go.mod h1:WrQgdN56bX2k38ghuLVRNAaWx4VppLihB6NPiUa31Os=
 github.com/aws/aws-sdk-go-v2/service/s3 v1.97.3 h1:HwxWTbTrIHm5qY+CAEur0s/figc3qwvLWsNkF4RPToo=
