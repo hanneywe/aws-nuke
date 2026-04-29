@@ -1,0 +1,43 @@
+service: connect
+resource: integration-association
+resourceName: ConnectIntegrationAssociation
+scope: account
+sdkPackage: connect
+
+list:
+  strategy: nested
+  levels:
+    - operation: ListInstances
+      pagination: paginator
+      itemsField: InstanceSummaryList
+      itemType: InstanceSummary
+      iteratorVar: instance
+    - operation: ListIntegrationAssociations
+      pagination: paginator
+      itemsField: IntegrationAssociationSummaryList
+      itemType: IntegrationAssociationSummary
+      iteratorVar: assoc
+      parentInputMapping:
+        InstanceId: instance.Id
+
+delete:
+  operation: DeleteIntegrationAssociation
+  inputFields:
+    - InstanceId
+    - IntegrationAssociationId
+
+fields:
+  - name: InstanceId
+    type: "*string"
+    fromList: instance.Id
+    propertyTag: 'name=InstanceId'
+  - name: IntegrationAssociationId
+    type: "*string"
+    fromList: assoc.IntegrationAssociationId
+    propertyTag: 'name=IntegrationAssociationId'
+  - name: IntegrationArn
+    type: "*string"
+    fromList: assoc.IntegrationArn
+
+stringRepresentation:
+  field: IntegrationAssociationId

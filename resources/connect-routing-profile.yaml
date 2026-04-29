@@ -1,0 +1,50 @@
+service: connect
+resource: routing-profile
+resourceName: ConnectRoutingProfile
+scope: account
+sdkPackage: connect
+
+list:
+  strategy: nested
+  levels:
+    - operation: ListInstances
+      pagination: paginator
+      itemsField: InstanceSummaryList
+      itemType: InstanceSummary
+      iteratorVar: instance
+    - operation: ListRoutingProfiles
+      pagination: paginator
+      itemsField: RoutingProfileSummaryList
+      itemType: RoutingProfileSummary
+      iteratorVar: profile
+      parentInputMapping:
+        InstanceId: instance.Id
+
+delete:
+  operation: DeleteRoutingProfile
+  inputFields:
+    - InstanceId
+    - RoutingProfileId
+
+fields:
+  - name: InstanceId
+    type: "*string"
+    fromList: instance.Id
+    propertyTag: 'name=InstanceId'
+  - name: RoutingProfileId
+    type: "*string"
+    fromList: profile.Id
+    propertyTag: 'name=RoutingProfileId'
+  - name: Name
+    type: "*string"
+    fromList: profile.Name
+
+filters:
+  - field: Name
+    operator: equals
+    values:
+      - "Basic Routing Profile"
+    message: "cannot delete default routing profile"
+
+stringRepresentation:
+  field: Name
