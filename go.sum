@@ -88,6 +88,8 @@ github.com/aws/aws-sdk-go-v2/service/ssooidc v1.30.4 h1:OV/pxyXh+eMA0TExHEC4jyWd
 github.com/aws/aws-sdk-go-v2/service/ssooidc v1.30.4/go.mod h1:8Mm5VGYwtm+r305FfPSuc+aFkrypeylGYhFim6XEPoc=
 github.com/aws/aws-sdk-go-v2/service/sts v1.34.1 h1:aUrLQwJfZtwv3/ZNG2xRtEen+NqI3iesuacjP51Mv1s=
 github.com/aws/aws-sdk-go-v2/service/sts v1.34.1/go.mod h1:3wFBZKoWnX3r+Sm7in79i54fBmNfwhdNdQuscCw7QIk=
+github.com/aws/aws-sdk-go-v2/service/synthetics v1.42.13 h1:0H2EW/JpUsqHPkB7w7BIUwFSgJIw/eInx9GUJcsAFr4=
+github.com/aws/aws-sdk-go-v2/service/synthetics v1.42.13/go.mod h1:wRGndU1pDgOY2mcyAnEKDFND84ZH7fGKXS/SqkDCv6I=
 github.com/aws/aws-sdk-go-v2/service/taxsettings v1.16.21 h1:j1fEe4kX0Al9v6cD/OehxI7UmjHLpkyhDg9aaa8nejE=
 github.com/aws/aws-sdk-go-v2/service/taxsettings v1.16.21/go.mod h1:QJ00SW4ATxRfSrR59AUOp0CQViPfLA1wz6nWnYbQ7b0=
 github.com/aws/aws-sdk-go-v2/service/textract v1.40.17 h1:uEIM/cLRfWRdtwa3mCLreKg/UxNYu1VcsdalFlm4CUI=
