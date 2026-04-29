@@ -25,6 +25,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/eks v1.74.10
 	github.com/aws/aws-sdk-go-v2/service/iam v1.38.10
 	github.com/aws/aws-sdk-go-v2/service/inspector2 v1.44.12
+	github.com/aws/aws-sdk-go-v2/service/kinesisvideo v1.33.8
 	github.com/aws/aws-sdk-go-v2/service/lakeformation v1.46.6
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.88.5
 	github.com/aws/aws-sdk-go-v2/service/lexmodelsv2 v1.60.2
