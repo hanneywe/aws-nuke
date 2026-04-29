@@ -17,6 +17,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/bedrockruntime v1.50.5
 	github.com/aws/aws-sdk-go-v2/service/cloudfront v1.44.12
 	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.67.0
+	github.com/aws/aws-sdk-go-v2/service/codebuild v1.68.13
 	github.com/aws/aws-sdk-go-v2/service/codeconnections v1.10.20
 	github.com/aws/aws-sdk-go-v2/service/codedeploy v1.35.13
 	github.com/aws/aws-sdk-go-v2/service/codestarconnections v1.35.12

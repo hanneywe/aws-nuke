@@ -34,6 +34,8 @@ github.com/aws/aws-sdk-go-v2/service/cloudfront v1.44.12 h1:GEdQ1mVjgYH/c7vKrt+r
 github.com/aws/aws-sdk-go-v2/service/cloudfront v1.44.12/go.mod h1:nr2/4ch+huedh56oGZClTeCVENvMBqeEkzkObAFCDQM=
 github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.67.0 h1:8PdeEH2umADwg0j0bNxt9AYaNgVqUP50KMlMNkcgdZ8=
 github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.67.0/go.mod h1:PobeppEnIjw4pcgjFryNDZCTH7AiqZw0yb5r98Gvf9c=
+github.com/aws/aws-sdk-go-v2/service/codebuild v1.68.13 h1:EEdmtkVROLA9VniV5STKv/EfEgV+n9NFBpOYU1jN9As=
+github.com/aws/aws-sdk-go-v2/service/codebuild v1.68.13/go.mod h1:+pwMMAvpmRuI7oHsTT2F5Lrp4ZQV2RF7b6tiaBj3Ugk=
 github.com/aws/aws-sdk-go-v2/service/codeconnections v1.10.20 h1:ppzpakRz3TPdO9OYlOOmg5m1IZIwgnIQmnPYLaFBeUE=
 github.com/aws/aws-sdk-go-v2/service/codeconnections v1.10.20/go.mod h1:F76hXLPr0XSgha7SxdvDpKF/LQrJjcbymxS5UTqcaV4=
 github.com/aws/aws-sdk-go-v2/service/codedeploy v1.35.13 h1:YpFVX7FEGD15QICwKNLqVASm8ecum2f9dtQfkXP/ZKg=
