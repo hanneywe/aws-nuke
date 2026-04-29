@@ -22,6 +22,10 @@ func init() {
 		Scope:    nuke.Account,
 		Resource: &EC2TGWAttachment{},
 		Lister:   &EC2TGWAttachmentLister{},
+		DependsOn: []string{
+			EC2TGWConnectPeerResource,
+			EC2VPNConcentratorResource,
+		},
 	})
 }
 
@@ -65,28 +69,40 @@ type EC2TGWAttachment struct {
 }
 
 func (e *EC2TGWAttachment) Remove(_ context.Context) error {
-	if *e.tgwa.ResourceType == "VPN" {
-		// This will get deleted as part of EC2VPNConnection, there is no API
-		// as part of TGW to delete VPN attachments.
-		return fmt.Errorf("VPN attachment")
-	}
-	params := &ec2.DeleteTransitGatewayVpcAttachmentInput{
-		TransitGatewayAttachmentId: e.tgwa.TransitGatewayAttachmentId,
-	}
+	switch *e.tgwa.ResourceType {
+	case "vpn":
+		return fmt.Errorf("VPN attachment must be deleted via EC2VPNConnection")
 
-	_, err := e.svc.DeleteTransitGatewayVpcAttachment(params)
-	if err != nil {
+	case "peering":
+		_, err := e.svc.DeleteTransitGatewayPeeringAttachment(&ec2.DeleteTransitGatewayPeeringAttachmentInput{
+			TransitGatewayAttachmentId: e.tgwa.TransitGatewayAttachmentId,
+		})
+		return err
+
+	case "connect":
+		_, err := e.svc.DeleteTransitGatewayConnect(&ec2.DeleteTransitGatewayConnectInput{
+			TransitGatewayAttachmentId: e.tgwa.TransitGatewayAttachmentId,
+		})
+		return err
+
+	default:
+		_, err := e.svc.DeleteTransitGatewayVpcAttachment(&ec2.DeleteTransitGatewayVpcAttachmentInput{
+			TransitGatewayAttachmentId: e.tgwa.TransitGatewayAttachmentId,
+		})
 		return err
 	}
-
-	return nil
 }
 
 func (e *EC2TGWAttachment) Filter() error {
 	if *e.tgwa.State == awsutil.StateDeleted {
 		return fmt.Errorf("already deleted")
 	}
-
+	if *e.tgwa.ResourceType == "vpn" {
+		return fmt.Errorf("VPN attachments are deleted via EC2VPNConnection")
+	}
+	if *e.tgwa.ResourceType == "vpn-concentrator" {
+		return fmt.Errorf("vpn-concentrator attachments are deleted via EC2VPNConcentrator")
+	}
 	return nil
 }
 

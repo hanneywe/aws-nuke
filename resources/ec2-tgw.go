@@ -26,6 +26,9 @@ func init() {
 		Lister:   &EC2TGWLister{},
 		DependsOn: []string{
 			EC2TGWAttachmentResource,
+			EC2TGWRouteTableResource,
+			EC2TGWMulticastDomainResource,
+			EC2TGWPolicyTableResource,
 		},
 	})
 }

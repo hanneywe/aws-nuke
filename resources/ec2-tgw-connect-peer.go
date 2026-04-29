@@ -62,7 +62,7 @@ type EC2TGWConnectPeer struct {
 }
 
 func (r *EC2TGWConnectPeer) Filter() error {
-	if *r.State == "deleted" {
+	if *r.State == EC2RouteServerStateDeleted {
 		return fmt.Errorf("already deleted")
 	}
 	return nil

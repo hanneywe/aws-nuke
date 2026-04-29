@@ -34,6 +34,10 @@ func init() {
 			EC2VPCPeeringConnectionResource,
 			EC2VPNGatewayResource,
 			EC2EgressOnlyInternetGatewayResource,
+			EC2SecurityGroupResource,
+			EC2FlowLogResource,
+			EC2CarrierGatewayResource,
+			EC2VPCCIDRBlockResource,
 		},
 		AlternativeResource: "AWS::EC2::VPC",
 		DeprecatedAliases: []string{

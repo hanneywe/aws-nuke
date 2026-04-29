@@ -27,6 +27,7 @@ func init() {
 		DependsOn: []string{
 			ELBv2Resource,
 			EC2DefaultSecurityGroupRuleResource,
+			EC2ManagedPrefixListResource,
 		},
 	})
 }
@@ -75,7 +76,7 @@ func (l *EC2SecurityGroupLister) List(_ context.Context, o interface{}) ([]resou
 }
 
 func (r *EC2SecurityGroup) Filter() error {
-	if ptr.ToString(r.Name) == "default" {
+	if ptr.ToString(r.Name) == "default" { //nolint:goconst
 		return fmt.Errorf("cannot delete group 'default'")
 	}
 
