@@ -14,7 +14,10 @@ import (
 	"github.com/ekristen/aws-nuke/v3/pkg/nuke"
 )
 
-const AppStreamFleetStateResource = "AppStreamFleetState"
+const (
+	AppStreamFleetStateResource = "AppStreamFleetState"
+	AppStreamFleetStateDeleting = "DELETING"
+)
 
 func init() {
 	registry.Register(&registry.Registration{
@@ -80,7 +83,7 @@ func (f *AppStreamFleetState) String() string {
 func (f *AppStreamFleetState) Filter() error {
 	if ptr.ToString(f.state) == appstream.FleetStateStopped {
 		return fmt.Errorf("already stopped")
-	} else if ptr.ToString(f.state) == "DELETING" {
+	} else if ptr.ToString(f.state) == AppStreamFleetStateDeleting {
 		return fmt.Errorf("already being deleted")
 	}
 

@@ -1,0 +1,41 @@
+service: appstream
+resource: entitlement
+resourceName: AppStreamEntitlement
+scope: account
+sdkPackage: appstream
+
+list:
+  strategy: nested
+  levels:
+    - operation: DescribeStacks
+      pagination: ""
+      itemsField: Stacks
+      itemType: Stack
+      iteratorVar: stack
+    - operation: DescribeEntitlements
+      pagination: ""
+      itemsField: Entitlements
+      itemType: Entitlement
+      iteratorVar: entitlement
+      parentInputMapping:
+        StackName: stack.Name
+
+delete:
+  operation: DeleteEntitlement
+  inputFields:
+    - Name
+    - StackName
+
+fields:
+  - name: StackName
+    type: "*string"
+    fromList: stack.Name
+  - name: Name
+    type: "*string"
+    fromList: entitlement.Name
+  - name: Description
+    type: "*string"
+    fromList: entitlement.Description
+
+stringRepresentation:
+  field: Name
