@@ -1,0 +1,55 @@
+service: apigatewayv2
+resource: portal
+resourceName: APIGatewayV2Portal
+scope: account
+sdkPackage: apigatewayv2
+
+list:
+  strategy: flat
+  operation: ListPortals
+  pagination: paginator
+  itemsField: Items
+  itemType: Portal
+
+delete:
+  operation: DeletePortal
+  inputFields:
+    - PortalId
+  override: |
+    if r.PublishStatus == apigatewayv2types.PublishStatusPublished {
+        _, err := r.svc.DisablePortal(ctx, &apigatewayv2.DisablePortalInput{
+            PortalId: r.PortalID,
+        })
+        if err != nil {
+            return err
+        }
+    }
+    _, err := r.svc.DeletePortal(ctx, &apigatewayv2.DeletePortalInput{
+        PortalId: r.PortalID,
+    })
+    return err
+
+fields:
+  - name: PortalID
+    type: "*string"
+    fromList: PortalId
+  - name: Name
+    type: "*string"
+    fromList: Name
+  - name: PublishStatus
+    type: "apigatewayv2types.PublishStatus"
+    fromList: PublishStatus
+    propertyTag: "name=PublishStatus"
+
+extraImports:
+  - apigatewayv2types "github.com/aws/aws-sdk-go-v2/service/apigatewayv2/types"
+
+stringRepresentation:
+  conditional:
+    field: Name
+    ifNil: PortalID
+    ifNotNil:
+      format: "%s (%s)"
+      fields:
+        - PortalID
+        - Name

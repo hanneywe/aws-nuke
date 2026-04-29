@@ -1,0 +1,110 @@
+package resources
+
+import (
+	"context"
+	"fmt"
+	"time"
+
+	"github.com/gotidy/ptr"
+
+	"github.com/aws/aws-sdk-go-v2/aws"
+	"github.com/aws/aws-sdk-go-v2/service/{{ .SDKPackage }}"
+{{- range .ExtraImports }}
+	{{ . }}
+{{- end }}
+{{- $needTypes := false -}}
+{{- range .PreDeletion -}}
+{{- if eq .Type "listAndBatchDelete" }}{{ $needTypes = true }}{{ end -}}
+{{- end }}
+{{- if $needTypes }}
+	{{ .SDKPackage }}types "github.com/aws/aws-sdk-go-v2/service/{{ .SDKPackage }}/types"
+{{- end }}
+
+	"github.com/ekristen/libnuke/pkg/registry"
+	"github.com/ekristen/libnuke/pkg/resource"
+{{- if .Settings }}
+	libsettings "github.com/ekristen/libnuke/pkg/settings"
+{{- end }}
+	"github.com/ekristen/libnuke/pkg/types"
+
+	"github.com/ekristen/aws-nuke/v3/pkg/nuke"
+)
+
+const {{ .ResourceName }}Resource = "{{ .ResourceName }}"
+
+func init() {
+	registry.Register(&registry.Registration{
+		Name:     {{ .ResourceName }}Resource,
+		Scope:    nuke.{{ scope .Scope }},
+		Resource: &{{ .ResourceName }}{},
+		Lister:   &{{ .ResourceName }}Lister{},
+{{- if .Settings }}
+		Settings: []string{
+{{- range .Settings }}
+			"{{ .Name }}",
+{{- end }}
+		},
+{{- end }}
+{{- if .Dependencies }}
+		DependsOn: []string{
+{{- range .Dependencies }}
+			{{ . }}Resource,
+{{- end }}
+		},
+{{- end }}
+	})
+}
+
+{{ listerStruct . }}
+
+func (l *{{ .ResourceName }}Lister) List(ctx context.Context, o interface{}) ([]resource.Resource, error) {
+{{- if .List.Override }}
+{{ .List.Override }}
+{{- else }}
+{{- if eq .SvcType "concrete" }}
+	opts := o.(*nuke.ListerOpts)
+	svc := {{ .SDKPackage }}.NewFromConfig(*opts.Config)
+{{- else }}
+	opts := o.(*nuke.ListerOpts)
+	svc := l.svc
+	if svc == nil {
+		svc = {{ .SDKPackage }}.NewFromConfig(*opts.Config)
+	}
+{{- end }}
+	var resources []resource.Resource
+{{- if eq .List.Strategy "flat" }}
+{{ flatList . }}
+{{- else if eq .List.Strategy "nested" }}
+{{ nestedList . }}
+{{- else if eq .List.Strategy "singleton" }}
+{{ singletonList . }}
+{{- end }}
+	return resources, nil
+{{- end }}
+}
+
+{{ resourceStruct . }}
+{{- if or .Filters .FilterOverride }}
+
+{{ filterMethod . }}
+{{- end }}
+
+func (r *{{ .ResourceName }}) Remove(ctx context.Context) error {
+{{- if .Delete.Override }}
+{{ .Delete.Override }}
+{{- else }}
+{{ removeMethod . }}
+{{- end }}
+}
+
+func (r *{{ .ResourceName }}) Properties() types.Properties {
+	return types.NewPropertiesFromStruct(r)
+}
+
+{{ stringMethod . }}
+{{- if .Settings }}
+
+func (r *{{ .ResourceName }}) Settings(setting *libsettings.Setting) {
+	r.settings = setting
+}
+{{- end }}

@@ -1,0 +1,15 @@
+package resources
+
+import (
+	"context"
+
+	"github.com/aws/aws-sdk-go-v2/service/{{ .SDKPackage }}"
+)
+
+// {{ .InterfaceName }} is the interface for the {{ .SDKPackage }} SDK client methods.
+type {{ .InterfaceName }} interface {
+{{- range .Methods }}
+	{{ . }}(ctx context.Context, params *{{ $.SDKPackage }}.{{ . }}Input,
+		optFns ...func(*{{ $.SDKPackage }}.Options)) (*{{ $.SDKPackage }}.{{ . }}Output, error)
+{{- end }}
+}

@@ -1,0 +1,40 @@
+service: chimesdkvoice
+resource: phone-number
+resourceName: ChimeSDKVoicePhoneNumber
+scope: account
+sdkPackage: chimesdkvoice
+
+list:
+  strategy: flat
+  operation: ListPhoneNumbers
+  pagination: nextToken
+  itemsField: PhoneNumbers
+  itemType: PhoneNumber
+
+delete:
+  operation: DeletePhoneNumber
+  inputFields:
+    - PhoneNumberId
+
+fields:
+  - name: PhoneNumberId
+    type: "*string"
+    fromList: PhoneNumberId
+  - name: E164PhoneNumber
+    type: "*string"
+    fromList: E164PhoneNumber
+  - name: Status
+    type: "*string"
+    fromList: Status
+
+filters:
+  - field: Status
+    operator: equals
+    values:
+      - DeleteInProgress
+      - Cancelled
+      - ReleaseInProgress
+    message: "already being deleted or cancelled"
+
+stringRepresentation:
+  field: E164PhoneNumber

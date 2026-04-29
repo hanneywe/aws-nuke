@@ -1,0 +1,37 @@
+service: vpclattice
+resource: target-group
+resourceName: VPCLatticeTargetGroup
+scope: account
+sdkPackage: vpclattice
+
+list:
+  strategy: flat
+  operation: ListTargetGroups
+  pagination: nextToken
+  itemsField: Items
+  itemType: TargetGroupSummary
+  tags:
+    operation: ListTagsForResource
+    arnField: Arn
+
+delete:
+  operation: DeleteTargetGroup
+  inputFields:
+    - TargetGroupIdentifier
+
+fields:
+  - name: ARN
+    type: "*string"
+    fromList: Arn
+  - name: Name
+    type: "*string"
+    fromList: Name
+  - name: TargetGroupId
+    type: "*string"
+    fromList: Id
+  - name: Tags
+    type: "map[string]string"
+    fromTags: true
+
+stringRepresentation:
+  field: Name

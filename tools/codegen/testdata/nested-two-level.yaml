@@ -1,0 +1,38 @@
+service: s3vectors
+resource: vector-index
+resourceName: S3VectorIndex
+scope: account
+sdkPackage: s3vectors
+
+list:
+  strategy: nested
+  levels:
+    - operation: ListVectorBuckets
+      pagination: paginator
+      itemsField: VectorBuckets
+      itemType: VectorBucket
+      iteratorVar: bucket
+    - operation: ListVectorIndexes
+      pagination: paginator
+      itemsField: VectorIndexes
+      itemType: VectorIndex
+      iteratorVar: idx
+      parentInputMapping:
+        VectorBucketName: bucket.VectorBucketName
+
+delete:
+  operation: DeleteVectorIndex
+  inputFields:
+    - VectorBucketName
+    - VectorIndexName
+
+fields:
+  - name: VectorBucketName
+    type: "*string"
+    fromList: bucket.VectorBucketName
+  - name: VectorIndexName
+    type: "*string"
+    fromList: idx.VectorIndexName
+
+stringRepresentation:
+  field: VectorIndexName

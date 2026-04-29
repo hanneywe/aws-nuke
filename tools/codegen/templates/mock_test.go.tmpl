@@ -1,0 +1,85 @@
+package resources
+
+import (
+	"context"
+	"testing"
+
+	"github.com/gotidy/ptr"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/mock"
+
+	"github.com/aws/aws-sdk-go-v2/service/{{ .SDKPackage }}"
+{{- if needsSDKTypes . }}
+	{{ .SDKPackage }}types "github.com/aws/aws-sdk-go-v2/service/{{ .SDKPackage }}/types"
+{{- end }}
+)
+
+func Test_Mock_{{ .ResourceName }}_List(t *testing.T) {
+	a := assert.New(t)
+	mockClient := new({{ .MockStructName }})
+{{ mockListSetup . }}
+	lister := &{{ .ResourceName }}Lister{svc: mockClient}
+	resources, err := lister.List(context.TODO(), {{ .TestListerOptsVar }})
+	a.NoError(err)
+	a.Len(resources, 1)
+
+	r := resources[0].(*{{ .ResourceName }})
+	a.Equal("test-value", {{ mockListAssertField . }})
+	mockClient.AssertExpectations(t)
+}
+
+func Test_Mock_{{ .ResourceName }}_List_Empty(t *testing.T) {
+	a := assert.New(t)
+	mockClient := new({{ .MockStructName }})
+{{ mockListEmptySetup . }}
+	lister := &{{ .ResourceName }}Lister{svc: mockClient}
+	resources, err := lister.List(context.TODO(), {{ .TestListerOptsVar }})
+	a.NoError(err)
+	a.Len(resources, 0)
+	mockClient.AssertExpectations(t)
+}
+
+func Test_Mock_{{ .ResourceName }}_Remove(t *testing.T) {
+	a := assert.New(t)
+	mockClient := new({{ .MockStructName }})
+
+	r := &{{ .ResourceName }}{
+		svc: mockClient,
+{{- range .Delete.InputFields }}
+		{{ . | goIdiomatic }}: ptr.String("test-{{ . | lower }}"),
+{{- end }}
+	}
+
+	mockClient.On("{{ .Delete.Operation }}", mock.Anything,
+		&{{ .SDKPackage }}.{{ .Delete.Operation }}Input{
+{{- range .Delete.InputFields }}
+			{{ . }}: r.{{ . | goIdiomatic }},
+{{- end }}
+		}).Return(&{{ .SDKPackage }}.{{ .Delete.Operation }}Output{}, nil)
+
+	a.NoError(r.Remove(context.TODO()))
+	mockClient.AssertExpectations(t)
+}
+
+func Test_Mock_{{ .ResourceName }}_Properties(t *testing.T) {
+	a := assert.New(t)
+	r := &{{ .ResourceName }}{
+{{- range exportedStringFields . }}
+		{{ .Name | goIdiomatic }}: ptr.String("test-{{ .Name | lower }}"),
+{{- end }}
+	}
+	props := r.Properties()
+{{- range exportedStringFields . }}
+	a.Equal("test-{{ .Name | lower }}", props.Get("{{ .Name }}"))
+{{- end }}
+}
+
+func Test_Mock_{{ .ResourceName }}_String(t *testing.T) {
+	a := assert.New(t)
+	r := &{{ .ResourceName }}{
+{{- range stringFields . }}
+		{{ .Name | goIdiomatic }}: ptr.String("test-{{ .Name | lower }}"),
+{{- end }}
+	}
+	a.Equal({{ expectedString . }}, r.String())
+}

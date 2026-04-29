@@ -1,0 +1,25 @@
+package resources
+
+import (
+	"context"
+
+	"github.com/stretchr/testify/mock"
+
+	"github.com/aws/aws-sdk-go-v2/service/{{ .SDKPackage }}"
+
+	"github.com/ekristen/aws-nuke/v3/pkg/nuke"
+)
+
+type {{ .MockStructName }} struct {
+	mock.Mock
+}
+{{ range .Methods }}
+func (m *{{ $.MockStructName }}) {{ . }}(
+	ctx context.Context, params *{{ $.SDKPackage }}.{{ . }}Input,
+	_ ...func(*{{ $.SDKPackage }}.Options),
+) (*{{ $.SDKPackage }}.{{ . }}Output, error) {
+	args := m.Called(ctx, params)
+	return args.Get(0).(*{{ $.SDKPackage }}.{{ . }}Output), args.Error(1)
+}
+{{ end }}
+var {{ .TestListerOptsVar }} = &nuke.ListerOpts{}

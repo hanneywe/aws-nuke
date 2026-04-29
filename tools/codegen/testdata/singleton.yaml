@@ -1,0 +1,30 @@
+service: emr
+resource: block-public-access-configuration
+resourceName: EMRBlockPublicAccessConfiguration
+scope: account
+sdkPackage: emr
+
+list:
+  strategy: singleton
+  operation: GetBlockPublicAccessConfiguration
+  responseField: BlockPublicAccessConfiguration
+  nilCheck: true
+
+delete:
+  operation: PutBlockPublicAccessConfiguration
+  inputFields:
+    - BlockPublicAccessConfiguration
+  override: |
+    _, err := r.svc.PutBlockPublicAccessConfiguration(ctx, &emr.PutBlockPublicAccessConfigurationInput{
+        BlockPublicAccessConfiguration: &emrtypes.BlockPublicAccessConfiguration{
+            BlockPublicSecurityGroupRules: aws.Bool(false),
+        },
+    })
+    return err
+
+fields:
+  - name: AccountID
+    type: "*string"
+
+stringRepresentation:
+  field: AccountID

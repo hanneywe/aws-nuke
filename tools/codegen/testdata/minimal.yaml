@@ -1,0 +1,28 @@
+service: mailmanager
+resource: relay
+resourceName: MailManagerRelay
+scope: account
+sdkPackage: mailmanager
+
+list:
+  strategy: flat
+  operation: ListRelays
+  pagination: paginator
+  itemsField: Relays
+  itemType: Relay
+
+delete:
+  operation: DeleteRelay
+  inputFields:
+    - RelayId
+
+fields:
+  - name: RelayId
+    type: "*string"
+    fromList: RelayId
+  - name: RelayName
+    type: "*string"
+    fromList: RelayName
+
+stringRepresentation:
+  field: RelayName

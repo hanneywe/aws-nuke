@@ -1,0 +1,97 @@
+service: mediapackagev2
+resource: origin-endpoint
+resourceName: MediaPackageV2OriginEndpoint
+scope: account
+sdkPackage: mediapackagev2
+svcType: concrete
+
+list:
+  strategy: nested
+  levels:
+    - operation: ListChannelGroups
+      pagination: paginator
+      itemsField: Items
+      iteratorVar: cg
+    - operation: ListChannels
+      pagination: paginator
+      itemsField: Items
+      iteratorVar: ch
+      parentInputMapping:
+        ChannelGroupName: cg.ChannelGroupName
+    - operation: ListOriginEndpoints
+      pagination: paginator
+      itemsField: Items
+      iteratorVar: ep
+      parentInputMapping:
+        ChannelGroupName: cg.ChannelGroupName
+        ChannelName: ch.ChannelName
+
+delete:
+  operation: DeleteOriginEndpoint
+  inputFields:
+    - ChannelGroupName
+    - ChannelName
+    - OriginEndpointName
+  override: |
+    _, err := r.svc.DeleteOriginEndpoint(ctx, &mediapackagev2.DeleteOriginEndpointInput{
+        ChannelGroupName:   r.ChannelGroupName,
+        ChannelName:        r.ChannelName,
+        OriginEndpointName: r.OriginEndpointName,
+    })
+    return err
+
+fields:
+  - name: ChannelGroupName
+    type: "*string"
+    fromList: cg.ChannelGroupName
+  - name: ChannelName
+    type: "*string"
+    fromList: ch.ChannelName
+  - name: OriginEndpointName
+    type: "*string"
+    fromList: ep.OriginEndpointName
+
+filters:
+  - field: Status
+    operator: equals
+    values:
+      - DeleteInProgress
+      - Canceled
+    message: "already being deleted or canceled"
+
+settings:
+  - name: DisableDeletionProtection
+    protectionField: protection
+    disableOperation: UpdateEndpointConfig
+    disableInput:
+      Name: Name
+      DeletionProtection: false
+
+dependencies:
+  - MediaPackageV2Channel
+
+preDeletion:
+  - type: listAndBatchDelete
+    listOperation: ListTargets
+    listInput:
+      TargetGroupIdentifier: ARN
+    listItemsField: Items
+    deleteOperation: DeregisterTargets
+    deleteInput:
+      TargetGroupIdentifier: ARN
+    deleteItemsField: Targets
+    itemMapping:
+      Id: Id
+      Port: Port
+
+extraImports:
+  - "github.com/aws/aws-sdk-go-v2/service/mediapackagev2"
+
+stringRepresentation:
+  field: OriginEndpointName
+
+integrationTest:
+  create:
+    operation: CreateOriginEndpoint
+    input:
+      OriginEndpointName: "aws-nuke-test-endpoint"

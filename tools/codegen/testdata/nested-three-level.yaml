@@ -1,0 +1,50 @@
+service: mediapackagev2
+resource: origin-endpoint
+resourceName: MediaPackageV2OriginEndpoint
+scope: account
+sdkPackage: mediapackagev2
+
+list:
+  strategy: nested
+  levels:
+    - operation: ListChannelGroups
+      pagination: paginator
+      itemsField: Items
+      itemType: ChannelGroupListConfiguration
+      iteratorVar: cg
+    - operation: ListChannels
+      pagination: paginator
+      itemsField: Items
+      itemType: ChannelListConfiguration
+      iteratorVar: ch
+      parentInputMapping:
+        ChannelGroupName: cg.ChannelGroupName
+    - operation: ListOriginEndpoints
+      pagination: paginator
+      itemsField: Items
+      itemType: OriginEndpointListConfiguration
+      iteratorVar: ep
+      parentInputMapping:
+        ChannelGroupName: cg.ChannelGroupName
+        ChannelName: ch.ChannelName
+
+delete:
+  operation: DeleteOriginEndpoint
+  inputFields:
+    - ChannelGroupName
+    - ChannelName
+    - OriginEndpointName
+
+fields:
+  - name: ChannelGroupName
+    type: "*string"
+    fromList: cg.ChannelGroupName
+  - name: ChannelName
+    type: "*string"
+    fromList: ch.ChannelName
+  - name: OriginEndpointName
+    type: "*string"
+    fromList: ep.OriginEndpointName
+
+stringRepresentation:
+  field: OriginEndpointName

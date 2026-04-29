@@ -1,0 +1,4 @@
+{{- range .Methods }}
+	{{ . }}(ctx context.Context, params *{{ $.SDKPackage }}.{{ . }}Input,
+		optFns ...func(*{{ $.SDKPackage }}.Options)) (*{{ $.SDKPackage }}.{{ . }}Output, error)
+{{- end }}

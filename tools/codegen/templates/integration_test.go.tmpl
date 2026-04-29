@@ -1,0 +1,80 @@
+//go:build integration
+
+package resources
+
+import (
+	"context"
+	"fmt"
+	"testing"
+	"time"
+
+	"github.com/gotidy/ptr"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/suite"
+
+	"github.com/aws/aws-sdk-go-v2/config"
+	"github.com/aws/aws-sdk-go-v2/service/{{ .SDKPackage }}"
+)
+
+type Test{{ .ResourceName }}Suite struct {
+	suite.Suite
+	svc *{{ .SDKPackage }}.Client
+{{- range .Delete.InputFields }}
+	{{ . | lcfirst }} *string
+{{- end }}
+}
+
+func (suite *Test{{ .ResourceName }}Suite) SetupSuite() {
+	ctx := context.TODO()
+	cfg, err := config.LoadDefaultConfig(ctx, config.WithRegion("us-east-1"))
+	if err != nil {
+		suite.T().Fatalf("failed to load config: %%v", err)
+	}
+	suite.svc = {{ .SDKPackage }}.NewFromConfig(cfg)
+{{- if and .IntegrationTest .IntegrationTest.Create }}
+
+	resp, err := suite.svc.{{ .IntegrationTest.Create.Operation }}(ctx, &{{ .SDKPackage }}.{{ .IntegrationTest.Create.Operation }}Input{
+{{- range $key, $val := .IntegrationTest.Create.Input }}
+		{{ $key }}: {{ integInputVal $val }},
+{{- end }}
+	})
+	if err != nil {
+		suite.T().Fatalf("failed to create test resource: %%v", err)
+	}
+{{- range $.Delete.InputFields }}
+	suite.{{ . | lcfirst }} = resp.{{ . }}
+{{- end }}
+{{- end }}
+}
+
+func (suite *Test{{ .ResourceName }}Suite) TearDownSuite() {
+	ctx := context.TODO()
+	_, _ = suite.svc.{{ .Delete.Operation }}(ctx, &{{ .SDKPackage }}.{{ .Delete.Operation }}Input{
+{{- range .Delete.InputFields }}
+		{{ . }}: suite.{{ . | lcfirst }},
+{{- end }}
+	})
+}
+
+func (suite *Test{{ .ResourceName }}Suite) TestList() {
+	a := assert.New(suite.T())
+	lister := &{{ .ResourceName }}Lister{svc: suite.svc}
+	resources, err := lister.List(context.TODO(), test{{ .SDKPackage | ucfirst }}ListerOpts)
+	a.NoError(err)
+	a.Greater(len(resources), 0)
+}
+
+func (suite *Test{{ .ResourceName }}Suite) TestRemove() {
+	a := assert.New(suite.T())
+	resource := &{{ .ResourceName }}{
+		svc: suite.svc,
+{{- range .Delete.InputFields }}
+		{{ . }}: suite.{{ . | lcfirst }},
+{{- end }}
+	}
+	a.NoError(resource.Remove(context.TODO()))
+}
+
+func Test{{ .ResourceName }}Integration(t *testing.T) {
+	suite.Run(t, new(Test{{ .ResourceName }}Suite))
+}

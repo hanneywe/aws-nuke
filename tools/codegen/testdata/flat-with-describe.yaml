@@ -1,0 +1,36 @@
+service: eks
+resource: clusters
+resourceName: EKSCluster
+scope: account
+sdkPackage: eks
+svcType: concrete
+
+list:
+  strategy: flat
+  operation: ListClusters
+  pagination: paginator
+  itemsField: Clusters
+  describe:
+    operation: DescribeCluster
+    inputMapping:
+      Name: cluster
+    responseField: Cluster
+
+delete:
+  operation: DeleteCluster
+  inputFields:
+    - Name
+
+fields:
+  - name: Name
+    type: "*string"
+    fromList: cluster
+  - name: CreatedAt
+    type: "*time.Time"
+    fromDescribe: CreatedAt
+  - name: Tags
+    type: "map[string]string"
+    fromDescribe: Tags
+
+stringRepresentation:
+  field: Name
