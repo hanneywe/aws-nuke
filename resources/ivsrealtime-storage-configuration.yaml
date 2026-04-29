@@ -1,0 +1,31 @@
+service: ivsrealtime
+resource: storage-configuration
+resourceName: IVSRealtimeStorageConfiguration
+scope: account
+sdkPackage: ivsrealtime
+
+list:
+  strategy: flat
+  operation: ListStorageConfigurations
+  pagination: paginator
+  itemsField: StorageConfigurations
+  itemType: StorageConfigurationSummary
+
+delete:
+  operation: DeleteStorageConfiguration
+  inputFields:
+    - ARN
+
+fields:
+  - name: ARN
+    type: "*string"
+    fromList: Arn
+  - name: Name
+    type: "*string"
+    fromList: Name
+  - name: Tags
+    type: "map[string]string"
+    fromList: Tags
+
+stringRepresentation:
+  field: ARN
