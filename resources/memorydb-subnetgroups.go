@@ -2,6 +2,8 @@ package resources
 
 import (
 	"context"
+	"fmt"
+	"strings"
 
 	"github.com/aws/aws-sdk-go/aws"              //nolint:staticcheck
 	"github.com/aws/aws-sdk-go/service/memorydb" //nolint:staticcheck
@@ -69,6 +71,13 @@ type MemoryDBSubnetGroup struct {
 	svc  *memorydb.MemoryDB
 	name *string
 	tags []*memorydb.Tag
+}
+
+func (i *MemoryDBSubnetGroup) Filter() error {
+	if strings.HasPrefix(*i.name, "default") {
+		return fmt.Errorf("cannot delete default subnet group")
+	}
+	return nil
 }
 
 func (i *MemoryDBSubnetGroup) Remove(_ context.Context) error {
