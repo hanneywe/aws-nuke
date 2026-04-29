@@ -27,6 +27,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/inspector2 v1.44.12
 	github.com/aws/aws-sdk-go-v2/service/lakeformation v1.46.6
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.88.5
+	github.com/aws/aws-sdk-go-v2/service/lexmodelsv2 v1.60.2
 	github.com/aws/aws-sdk-go-v2/service/lightsail v1.51.0
 	github.com/aws/aws-sdk-go-v2/service/location v1.50.12
 	github.com/aws/aws-sdk-go-v2/service/mailmanager v1.17.20
