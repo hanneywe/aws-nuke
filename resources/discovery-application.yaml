@@ -1,0 +1,61 @@
+service: discovery
+resource: application
+resourceName: DiscoveryApplication
+scope: account
+sdkPackage: applicationdiscoveryservice
+
+extraImports:
+  - 'applicationdiscoveryservicetypes "github.com/aws/aws-sdk-go-v2/service/applicationdiscoveryservice/types"'
+
+list:
+  strategy: flat
+  operation: ListConfigurations
+  pagination: paginator
+  itemsField: Configurations
+  override: |
+    opts := o.(*nuke.ListerOpts)
+    svc := l.svc
+    if svc == nil {
+        svc = applicationdiscoveryservice.NewFromConfig(*opts.Config)
+    }
+    var resources []resource.Resource
+
+    paginator := applicationdiscoveryservice.NewListConfigurationsPaginator(svc, &applicationdiscoveryservice.ListConfigurationsInput{
+        ConfigurationType: applicationdiscoveryservicetypes.ConfigurationItemTypeApplication,
+    })
+
+    for paginator.HasMorePages() {
+        resp, err := paginator.NextPage(ctx)
+        if err != nil {
+            return nil, err
+        }
+
+        for _, item := range resp.Configurations {
+            resources = append(resources, &DiscoveryApplication{
+                svc:             svc,
+                ConfigurationID: aws.String(item["application.configurationId"]),
+                Name:            aws.String(item["application.name"]),
+            })
+        }
+    }
+
+    return resources, nil
+
+delete:
+  operation: DeleteApplications
+  inputFields:
+    - ConfigurationId
+  override: |
+    _, err := r.svc.DeleteApplications(ctx, &applicationdiscoveryservice.DeleteApplicationsInput{
+        ConfigurationIds: []string{aws.ToString(r.ConfigurationID)},
+    })
+    return err
+
+fields:
+  - name: ConfigurationId
+    type: "*string"
+  - name: Name
+    type: "*string"
+
+stringRepresentation:
+  field: ConfigurationId
