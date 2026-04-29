@@ -33,12 +33,27 @@ func init() {
 	})
 }
 
-type NeptuneInstanceLister struct{}
+// NeptuneInstanceClient is the interface for Neptune SDK methods used by NeptuneInstance.
+type NeptuneInstanceClient interface {
+	DescribeDBInstances(input *neptune.DescribeDBInstancesInput) (*neptune.DescribeDBInstancesOutput, error)
+	ListTagsForResource(input *neptune.ListTagsForResourceInput) (*neptune.ListTagsForResourceOutput, error)
+	ModifyDBCluster(input *neptune.ModifyDBClusterInput) (*neptune.ModifyDBClusterOutput, error)
+	ModifyDBInstance(input *neptune.ModifyDBInstanceInput) (*neptune.ModifyDBInstanceOutput, error)
+	DeleteDBInstance(input *neptune.DeleteDBInstanceInput) (*neptune.DeleteDBInstanceOutput, error)
+}
+
+type NeptuneInstanceLister struct {
+	svc NeptuneInstanceClient
+}
 
 func (l *NeptuneInstanceLister) List(_ context.Context, o interface{}) ([]resource.Resource, error) {
 	opts := o.(*nuke.ListerOpts)
 
-	svc := neptune.New(opts.Session)
+	svc := l.svc
+	if svc == nil {
+		svc = neptune.New(opts.Session)
+	}
+
 	resources := make([]resource.Resource, 0)
 
 	params := &neptune.DescribeDBInstancesInput{
@@ -90,7 +105,7 @@ func (l *NeptuneInstanceLister) List(_ context.Context, o interface{}) ([]resour
 }
 
 type NeptuneInstance struct {
-	svc       *neptune.Neptune
+	svc       NeptuneInstanceClient
 	settings  *libsettings.Setting
 	ID        *string
 	ClusterID *string
@@ -121,7 +136,7 @@ func (r *NeptuneInstance) Remove(_ context.Context) error {
 		}
 	}
 
-	if r.settings.GetBool("DisableDeletionProtection") {
+	if r.settings.GetBool("DisableDeletionProtection") && ptr.ToString(r.ClusterID) == "" {
 		_, err := r.svc.ModifyDBInstance(&neptune.ModifyDBInstanceInput{
 			DBInstanceIdentifier: r.ID,
 			DeletionProtection:   ptr.Bool(false),

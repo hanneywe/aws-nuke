@@ -2,6 +2,7 @@ package resources
 
 import (
 	"context"
+	"errors"
 	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/service/neptunegraph"
@@ -125,11 +126,15 @@ func (r *NeptuneGraph) Remove(ctx context.Context) error {
 		}
 	}
 
+	var notFound *neptunegraphtypes.ResourceNotFoundException
 	for _, s := range r.snapshots {
 		_, err := r.svc.DeleteGraphSnapshot(ctx, &neptunegraph.DeleteGraphSnapshotInput{
 			SnapshotIdentifier: s.Id,
 		})
 		if err != nil {
+			if errors.As(err, &notFound) {
+				continue
+			}
 			return err
 		}
 	}
