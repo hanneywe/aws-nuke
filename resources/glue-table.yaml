@@ -1,0 +1,41 @@
+service: glue-v2
+resource: table
+resourceName: GlueTable
+scope: account
+sdkPackage: glue
+
+list:
+  strategy: nested
+  levels:
+    - operation: GetDatabases
+      pagination: nextToken
+      itemsField: DatabaseList
+      itemType: Database
+      iteratorVar: db
+    - operation: GetTables
+      pagination: nextToken
+      itemsField: TableList
+      itemType: Table
+      iteratorVar: table
+      parentInputMapping:
+        DatabaseName: db.Name
+
+delete:
+  operation: DeleteTable
+  inputFields:
+    - DatabaseName
+    - Name
+
+fields:
+  - name: DatabaseName
+    type: "*string"
+    fromList: db.Name
+  - name: Name
+    type: "*string"
+    fromList: table.Name
+
+stringRepresentation:
+  format: "%s/%s"
+  fields:
+    - DatabaseName
+    - Name
