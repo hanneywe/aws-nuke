@@ -1,0 +1,47 @@
+service: iot
+resource: policy-version
+resourceName: IoTPolicyVersion
+scope: account
+sdkPackage: iot
+
+list:
+  strategy: nested
+  levels:
+    - operation: ListPolicies
+      pagination: paginator
+      itemsField: Policies
+      itemType: Policy
+      iteratorVar: policy
+    - operation: ListPolicyVersions
+      pagination: ""
+      itemsField: PolicyVersions
+      itemType: PolicyVersion
+      iteratorVar: version
+      parentInputMapping:
+        PolicyName: policy.PolicyName
+
+delete:
+  operation: DeletePolicyVersion
+  inputFields:
+    - PolicyName
+    - PolicyVersionId
+
+fields:
+  - name: PolicyName
+    type: "*string"
+    fromList: policy.PolicyName
+  - name: PolicyVersionId
+    type: "*string"
+    fromList: version.VersionId
+  - name: IsDefaultVersion
+    type: "bool"
+    fromList: version.IsDefaultVersion
+
+filterOverride: |
+  if r.IsDefaultVersion {
+      return fmt.Errorf("cannot delete default policy version")
+  }
+  return nil
+
+stringRepresentation:
+  field: PolicyVersionId
