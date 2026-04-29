@@ -17,6 +17,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/bedrockruntime v1.50.5
 	github.com/aws/aws-sdk-go-v2/service/cloudfront v1.44.12
 	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.67.0
+	github.com/aws/aws-sdk-go-v2/service/connectcases v1.38.1
 	github.com/aws/aws-sdk-go-v2/service/customerprofiles v1.57.2
 	github.com/aws/aws-sdk-go-v2/service/databasemigrationservice v1.61.9
 	github.com/aws/aws-sdk-go-v2/service/dataexchange v1.41.0
