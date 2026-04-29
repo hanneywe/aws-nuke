@@ -58,6 +58,8 @@ github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.13.21 h1:c31//R3x
 github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.13.21/go.mod h1:r6+pf23ouCB718FUxaqzZdbpYFyDtehyZcmP5KL9FkA=
 github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.19.21 h1:ZlvrNcHSFFWURB8avufQq9gFsheUgjVD9536obIknfM=
 github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.19.21/go.mod h1:cv3TNhVrssKR0O/xxLJVRfd2oazSnZnkUeTf6ctUwfQ=
+github.com/aws/aws-sdk-go-v2/service/kafkaconnect v1.30.3 h1:UjBnjOlbgB/DP1K4TrVtEHv7VlcZud4qkyIEN9IEIGM=
+github.com/aws/aws-sdk-go-v2/service/kafkaconnect v1.30.3/go.mod h1:2KQeS3cs4nHBrnh9wBkPedW4WLD1TtuOXVscj+UkqXM=
 github.com/aws/aws-sdk-go-v2/service/kendraranking v1.15.24 h1:aWJqr7bui88wWkCE0ruU+6fVTnm4s5PbtfQknwt29Eg=
 github.com/aws/aws-sdk-go-v2/service/kendraranking v1.15.24/go.mod h1:72rTveowMibB1NtptqSBKAZRRTS8B4eznb9GW+GNkBE=
 github.com/aws/aws-sdk-go-v2/service/keyspaces v1.25.3 h1:ASqW70H5zqWxDM0jEwBtjtZ0EJewlmAsgUBqOaQzYLQ=
