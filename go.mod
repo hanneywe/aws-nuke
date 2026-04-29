@@ -30,6 +30,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/mgn v1.37.6
 	github.com/aws/aws-sdk-go-v2/service/neptunegraph v1.17.6
 	github.com/aws/aws-sdk-go-v2/service/networkfirewall v1.53.0
+	github.com/aws/aws-sdk-go-v2/service/pinpointsmsvoicev2 v1.27.5
 	github.com/aws/aws-sdk-go-v2/service/qconnect v1.28.3
 	github.com/aws/aws-sdk-go-v2/service/ram v1.34.19
 	github.com/aws/aws-sdk-go-v2/service/rbin v1.27.8

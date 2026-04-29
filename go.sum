@@ -68,6 +68,8 @@ github.com/aws/aws-sdk-go-v2/service/neptunegraph v1.17.6 h1:sA9Ll0/+rmaz08n5CHB
 github.com/aws/aws-sdk-go-v2/service/neptunegraph v1.17.6/go.mod h1:rbHtwGyKB0puYUphsbaSq2vQuoYfQ7Vx/ZBx9h4CnSU=
 github.com/aws/aws-sdk-go-v2/service/networkfirewall v1.53.0 h1:FHl1QPk+MTUjcbGtnNfcVnq5bPkP71Tbzt++qQ/dCnY=
 github.com/aws/aws-sdk-go-v2/service/networkfirewall v1.53.0/go.mod h1:EiHBjTVCeOUX045RTpHUuqrtexp4OtSbMLj+nXiaaHw=
+github.com/aws/aws-sdk-go-v2/service/pinpointsmsvoicev2 v1.27.5 h1:SPv5M8NzWHsrRlg887JJikjgNfVpJGRJTm8VgZHD5FM=
+github.com/aws/aws-sdk-go-v2/service/pinpointsmsvoicev2 v1.27.5/go.mod h1:kCPzAS3a+c6qCgn/fKZMXbO0Ju/2vU5HFqID8t9Q5uc=
 github.com/aws/aws-sdk-go-v2/service/qconnect v1.28.3 h1:CATCjKO+a0TzCuQHScq+hfTC3Y9NFYAjJCXfC6dMjC4=
 github.com/aws/aws-sdk-go-v2/service/qconnect v1.28.3/go.mod h1:/0919hKhe6x7Nig9/xBmeS3tAToomc3Z+AdN05I7r2Y=
 github.com/aws/aws-sdk-go-v2/service/ram v1.34.19 h1:KgzHjJvrAw5RQ5tXEyUX1B9zcPuWiCs7h/aT0Q6XYTE=
