@@ -45,8 +45,9 @@ func (l *MediaConvertQueueLister) List(_ context.Context, o interface{}) ([]reso
 
 		for _, queue := range output.Queues {
 			resources = append(resources, &MediaConvertQueue{
-				svc:  svc,
-				name: queue.Name,
+				svc:         svc,
+				name:        queue.Name,
+				pricingPlan: queue.PricingPlan,
 			})
 		}
 
@@ -61,8 +62,9 @@ func (l *MediaConvertQueueLister) List(_ context.Context, o interface{}) ([]reso
 }
 
 type MediaConvertQueue struct {
-	svc  *mediaconvert.MediaConvert
-	name *string
+	svc         *mediaconvert.MediaConvert
+	name        *string
+	pricingPlan *string
 }
 
 func (f *MediaConvertQueue) Remove(_ context.Context) error {
@@ -80,6 +82,9 @@ func (f *MediaConvertQueue) String() string {
 func (f *MediaConvertQueue) Filter() error {
 	if strings.Contains(*f.name, "Default") {
 		return fmt.Errorf("cannot delete default queue")
+	}
+	if f.pricingPlan != nil && *f.pricingPlan == "RESERVED" {
+		return fmt.Errorf("cannot delete reserved queue")
 	}
 	return nil
 }
