@@ -1,0 +1,32 @@
+service: locationservice
+resource: place-index
+resourceName: LocationServicePlaceIndex
+scope: account
+sdkPackage: location
+clientInterfaceName: LocationServiceClient
+
+list:
+  strategy: flat
+  operation: ListPlaceIndexes
+  pagination: paginator
+  itemsField: Entries
+  itemType: ListPlaceIndexesResponseEntry
+
+delete:
+  operation: DeletePlaceIndex
+  inputFields:
+    - IndexName
+
+fields:
+  - name: IndexName
+    type: "*string"
+    fromList: IndexName
+  - name: DataSource
+    type: "*string"
+    fromList: DataSource
+  - name: Description
+    type: "*string"
+    fromList: Description
+
+stringRepresentation:
+  field: IndexName

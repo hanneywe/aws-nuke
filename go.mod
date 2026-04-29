@@ -27,6 +27,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/inspector2 v1.44.12
 	github.com/aws/aws-sdk-go-v2/service/lakeformation v1.46.6
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.88.5
+	github.com/aws/aws-sdk-go-v2/service/location v1.50.12
 	github.com/aws/aws-sdk-go-v2/service/mailmanager v1.17.20
 	github.com/aws/aws-sdk-go-v2/service/mediaconnect v1.47.4
 	github.com/aws/aws-sdk-go-v2/service/medialive v1.93.2
