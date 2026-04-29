@@ -12,6 +12,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/amp v1.36.0
 	github.com/aws/aws-sdk-go-v2/service/apigateway v1.28.12
 	github.com/aws/aws-sdk-go-v2/service/applicationdiscoveryservice v1.35.14
+	github.com/aws/aws-sdk-go-v2/service/applicationsignals v1.19.1
 	github.com/aws/aws-sdk-go-v2/service/apprunner v1.39.13
 	github.com/aws/aws-sdk-go-v2/service/appstream v1.57.1
 	github.com/aws/aws-sdk-go-v2/service/appsync v1.42.3
