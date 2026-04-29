@@ -1,0 +1,44 @@
+service: dataexchange
+resource: revision
+resourceName: DataExchangeRevision
+scope: account
+sdkPackage: dataexchange
+
+list:
+  strategy: nested
+  levels:
+    - operation: ListDataSets
+      pagination: paginator
+      itemsField: DataSets
+      itemType: DataSetEntry
+      iteratorVar: dataset
+    - operation: ListDataSetRevisions
+      pagination: paginator
+      itemsField: Revisions
+      itemType: RevisionEntry
+      iteratorVar: revision
+      parentInputMapping:
+        DataSetId: dataset.Id
+
+delete:
+  operation: DeleteRevision
+  inputFields:
+    - DataSetId
+    - RevisionId
+
+fields:
+  - name: DataSetId
+    type: "*string"
+    fromList: dataset.Id
+  - name: RevisionId
+    type: "*string"
+    fromList: revision.Id
+  - name: Arn
+    type: "*string"
+    fromList: revision.Arn
+  - name: Comment
+    type: "*string"
+    fromList: revision.Comment
+
+stringRepresentation:
+  field: RevisionId

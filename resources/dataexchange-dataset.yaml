@@ -1,0 +1,31 @@
+service: dataexchange
+resource: dataset
+resourceName: DataExchangeDataSet
+scope: account
+sdkPackage: dataexchange
+
+list:
+  strategy: flat
+  operation: ListDataSets
+  pagination: paginator
+  itemsField: DataSets
+  itemType: DataSetEntry
+
+delete:
+  operation: DeleteDataSet
+  inputFields:
+    - DataSetId
+
+fields:
+  - name: DataSetId
+    type: "*string"
+    fromList: Id
+  - name: Name
+    type: "*string"
+    fromList: Name
+  - name: Arn
+    type: "*string"
+    fromList: Arn
+
+stringRepresentation:
+  field: DataSetId
