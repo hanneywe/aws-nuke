@@ -205,6 +205,85 @@ Settings are a map of resource types to their settings configuration. This allow
 resources. If a resource has a setting alternative, and you'd like to use its behavior, then you can specify the resource
 type in the `settings` section.
 
+### Usage
+
+```yaml
+settings:
+  EC2Instance:
+    DisableDeletionProtection: true
+    DisableStopProtection: true
+  RDSInstance:
+    DisableDeletionProtection: true
+```
+
+### Available Settings
+
+The following table lists all available settings grouped by resource type.
+
+| Resource Type | Setting | Type | Description |
+|---|---|---|---|
+| CloudFormationStack | `DisableDeletionProtection` | bool | Disables deletion protection on the stack before deleting it |
+| CloudFormationStack | `CreateRoleToDeleteStack` | bool | Creates a temporary IAM role to delete the stack if the original role no longer exists |
+| CloudTrailDashboard | `DisableTerminationProtection` | bool | Disables termination protection on the dashboard before deleting it |
+| CloudWatchLogsLogGroup | `DisableDeletionProtection` | bool | Disables deletion protection on the log group before deleting it |
+| CognitoUserPool | `DisableDeletionProtection` | bool | Sets deletion protection to inactive on the user pool before deleting it |
+| DocDBCluster | `DisableDeletionProtection` | bool | Disables deletion protection on the DocumentDB cluster before deleting it |
+| DocDBGlobalCluster | `DisableDeletionProtection` | bool | Disables deletion protection on the DocumentDB global cluster before deleting it |
+| DSQLCluster | `DisableDeletionProtection` | bool | Disables deletion protection on the DSQL cluster before deleting it |
+| DynamoDBTable | `DisableDeletionProtection` | bool | Disables deletion protection on the DynamoDB table before deleting it |
+| EC2Image | `DisableDeregistrationProtection` | bool | Disables deregistration protection on the AMI before deregistering it |
+| EC2Image | `IncludeDeprecated` | bool | Includes deprecated AMIs in the list of resources to remove |
+| EC2Image | `IncludeDisabled` | bool | Includes disabled AMIs in the list of resources to remove |
+| EC2Instance | `DisableDeletionProtection` | bool | Disables deletion protection (API termination) on the instance before terminating it |
+| EC2Instance | `DisableStopProtection` | bool | Disables stop protection on the instance before terminating it |
+| EKSCluster | `DisableDeletionProtection` | bool | Disables deletion protection on the EKS cluster before deleting it |
+| ELBv2LoadBalancer | `DisableDeletionProtection` | bool | Disables deletion protection on the load balancer before deleting it |
+| IAMRole | `IncludeServiceLinkedRoles` | bool | Includes service-linked roles in the list of resources to remove (excluded by default) |
+| IAMUser | `IgnorePermissionBoundary` | bool | Ignores the permission boundary when deleting the IAM user |
+| LightsailDisk | `ForceDeleteAddOns` | bool | Force deletes any add-ons attached to the Lightsail disk before deleting it |
+| LightsailInstance | `ForceDeleteAddOns` | bool | Force deletes any add-ons attached to the Lightsail instance before deleting it |
+| NeptuneCluster | `DisableDeletionProtection` | bool | Disables deletion protection on the Neptune cluster before deleting it |
+| NeptuneGlobalCluster | `DisableDeletionProtection` | bool | Disables deletion protection on the Neptune global cluster before deleting it |
+| NeptuneGraph | `DisableDeletionProtection` | bool | Disables deletion protection on the Neptune Analytics graph before deleting it |
+| NeptuneInstance | `DisableClusterDeletionProtection` | bool | Disables deletion protection on the parent Neptune cluster before deleting the instance |
+| NeptuneInstance | `DisableDeletionProtection` | bool | Disables deletion protection on the Neptune instance before deleting it |
+| PinpointPhoneNumber | `DisableDeletionProtection` | bool | Disables deletion protection on the Pinpoint phone number before releasing it |
+| PinpointSMSVoiceV2ProtectConfiguration | `DisableDeletionProtection` | bool | Disables deletion protection on the protect configuration before deleting it |
+| QLDBLedger | `DisableDeletionProtection` | bool | Disables deletion protection on the QLDB ledger before deleting it |
+| QuickSightSubscription | `DisableTerminationProtection` | bool | Disables termination protection on the QuickSight subscription before deleting it |
+| RbinRule | `DisableLockProtection` | bool | Unlocks a locked Recycle Bin retention rule before deleting it |
+| RDSInstance | `DisableDeletionProtection` | bool | Disables deletion protection on the RDS instance before deleting it |
+| RDSInstance | `StartClusterToDelete` | bool | Starts a stopped RDS instance so it can be deleted (stopped instances cannot be deleted) |
+| S3Bucket | `BypassGovernanceRetention` | bool | Bypasses governance-mode Object Lock retention when deleting objects in the bucket |
+| S3Bucket | `RemoveObjectLegalHold` | bool | Removes legal hold from objects before deleting them |
+| SSMQuickSetupConfigurationManager | `CreateRoleToDelete` | bool | Creates a temporary IAM role to delete the SSM Quick Setup configuration if the original role no longer exists |
+
+### Example
+
+```yaml
+settings:
+  EC2Instance:
+    DisableDeletionProtection: true
+    DisableStopProtection: true
+  EKSCluster:
+    DisableDeletionProtection: true
+  S3Bucket:
+    BypassGovernanceRetention: true
+    RemoveObjectLegalHold: true
+  IAMRole:
+    IncludeServiceLinkedRoles: true
+  EC2Image:
+    DisableDeregistrationProtection: true
+    IncludeDeprecated: true
+    IncludeDisabled: true
+  RDSInstance:
+    DisableDeletionProtection: true
+    StartClusterToDelete: true
+  CloudFormationStack:
+    DisableDeletionProtection: true
+    CreateRoleToDeleteStack: true
+```
+
 ## Global Presets
 
 To read more on global presets, see the [Presets](./config-presets.md) documentation.
