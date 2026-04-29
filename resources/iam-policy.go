@@ -29,6 +29,7 @@ func init() {
 			IAMUserPolicyAttachmentResource,
 			IAMGroupPolicyAttachmentResource,
 			IAMRolePolicyAttachmentResource,
+			IAMPolicyVersionResource,
 		},
 		DeprecatedAliases: []string{
 			"IamPolicy",

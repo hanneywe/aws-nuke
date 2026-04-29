@@ -1,0 +1,48 @@
+service: iamv2
+resource: account-alias
+resourceName: IAMAccountAlias
+scope: account
+sdkPackage: iam
+
+list:
+  strategy: flat
+  operation: ListAccountAliases
+  pagination: paginator
+  itemsField: AccountAliases
+  override: |
+    opts := o.(*nuke.ListerOpts)
+    svc := l.svc
+    if svc == nil {
+        svc = iam.NewFromConfig(*opts.Config)
+    }
+    var resources []resource.Resource
+
+    paginator := iam.NewListAccountAliasesPaginator(svc, &iam.ListAccountAliasesInput{})
+
+    for paginator.HasMorePages() {
+        resp, err := paginator.NextPage(ctx)
+        if err != nil {
+            return nil, err
+        }
+
+        for _, alias := range resp.AccountAliases {
+            resources = append(resources, &IAMAccountAlias{
+                svc:          svc,
+                AccountAlias: aws.String(alias),
+            })
+        }
+    }
+
+    return resources, nil
+
+delete:
+  operation: DeleteAccountAlias
+  inputFields:
+    - AccountAlias
+
+fields:
+  - name: AccountAlias
+    type: "*string"
+
+stringRepresentation:
+  field: AccountAlias

@@ -33,6 +33,7 @@ func init() {
 		Lister:   &IAMRoleLister{},
 		DependsOn: []string{
 			IAMRolePolicyAttachmentResource,
+			IAMRolePermissionBoundaryResource,
 		},
 		DeprecatedAliases: []string{
 			"IamRole",

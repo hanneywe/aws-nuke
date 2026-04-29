@@ -9,8 +9,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/aws/aws-sdk-go/aws" //nolint:staticcheck
-	"github.com/aws/aws-sdk-go/aws/awserr" //nolint:staticcheck
+	"github.com/aws/aws-sdk-go/aws"         //nolint:staticcheck
+	"github.com/aws/aws-sdk-go/aws/awserr"  //nolint:staticcheck
 	"github.com/aws/aws-sdk-go/aws/session" //nolint:staticcheck
 	"github.com/aws/aws-sdk-go/service/iam" //nolint:staticcheck
 )

@@ -2,7 +2,6 @@ package resources
 
 import (
 	"context"
-	"fmt"
 	"time"
 
 	"github.com/sirupsen/logrus"
@@ -35,6 +34,7 @@ func init() {
 			IAMUserGroupAttachmentResource,
 			IAMUserPolicyAttachmentResource,
 			IAMVirtualMFADeviceResource,
+			IAMUserPermissionBoundaryResource,
 		},
 		DeprecatedAliases: []string{
 			"IamUser", // TODO(v4): remove
@@ -57,16 +57,6 @@ type IAMUser struct {
 }
 
 func (r *IAMUser) Remove(_ context.Context) error {
-	if r.HasPermissionBoundary && !r.settings.GetBool("IgnorePermissionBoundary") {
-		fmt.Println("Removing permission boundary for user", *r.Name)
-		_, err := r.svc.DeleteUserPermissionsBoundary(&iam.DeleteUserPermissionsBoundaryInput{
-			UserName: r.Name,
-		})
-		if err != nil {
-			return err
-		}
-	}
-
 	_, err := r.svc.DeleteUser(&iam.DeleteUserInput{
 		UserName: r.Name,
 	})

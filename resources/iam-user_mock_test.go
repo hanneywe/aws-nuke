@@ -58,10 +58,6 @@ func Test_Mock_IAMUser_Remove(t *testing.T) {
 
 	mockIAM := mock_iamiface.NewMockIAMAPI(ctrl)
 
-	mockIAM.EXPECT().DeleteUserPermissionsBoundary(&iam.DeleteUserPermissionsBoundaryInput{
-		UserName: ptr.String("foobar"),
-	}).Return(&iam.DeleteUserPermissionsBoundaryOutput{}, nil)
-
 	mockIAM.EXPECT().DeleteUser(gomock.Eq(&iam.DeleteUserInput{
 		UserName: ptr.String("foobar"),
 	})).Return(&iam.DeleteUserOutput{}, nil)
