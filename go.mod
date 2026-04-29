@@ -37,6 +37,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/s3control v1.52.7
 	github.com/aws/aws-sdk-go-v2/service/shield v1.34.18
 	github.com/aws/aws-sdk-go-v2/service/ssmquicksetup v1.3.10
+	github.com/aws/aws-sdk-go-v2/service/storagegateway v1.43.14
 	github.com/aws/aws-sdk-go-v2/service/sts v1.34.1
 	github.com/aws/aws-sdk-go-v2/service/supportapp v1.18.21
 	github.com/aws/aws-sdk-go-v2/service/swf v1.33.15
