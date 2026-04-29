@@ -1,0 +1,41 @@
+service: appsync
+resource: channel-namespace
+resourceName: AppSyncChannelNamespace
+scope: account
+sdkPackage: appsync
+
+list:
+  strategy: nested
+  levels:
+    - operation: ListApis
+      pagination: paginator
+      itemsField: Apis
+      itemType: Api
+      iteratorVar: api
+    - operation: ListChannelNamespaces
+      pagination: paginator
+      itemsField: ChannelNamespaces
+      itemType: ChannelNamespace
+      iteratorVar: ns
+      parentInputMapping:
+        ApiId: api.ApiId
+
+delete:
+  operation: DeleteChannelNamespace
+  inputFields:
+    - ApiId
+    - Name
+
+fields:
+  - name: ApiId
+    type: "*string"
+    fromList: api.ApiId
+  - name: Name
+    type: "*string"
+    fromList: ns.Name
+  - name: Tags
+    type: "map[string]string"
+    fromList: ns.Tags
+
+stringRepresentation:
+  field: Name
