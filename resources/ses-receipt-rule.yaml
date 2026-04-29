@@ -1,0 +1,41 @@
+service: ses
+resource: receipt-rule
+resourceName: SESReceiptRule
+scope: account
+sdkPackage: ses
+
+list:
+  strategy: nested
+  levels:
+    - operation: ListReceiptRuleSets
+      pagination: nextToken
+      itemsField: RuleSets
+      itemType: ReceiptRuleSetMetadata
+      iteratorVar: ruleSet
+    - operation: DescribeReceiptRuleSet
+      pagination: ""
+      itemsField: Rules
+      itemType: ReceiptRule
+      iteratorVar: rule
+      parentInputMapping:
+        RuleSetName: ruleSet.Name
+
+delete:
+  operation: DeleteReceiptRule
+  inputFields:
+    - RuleName
+    - RuleSetName
+
+fields:
+  - name: RuleSetName
+    type: "*string"
+    fromList: ruleSet.Name
+  - name: RuleName
+    type: "*string"
+    fromList: rule.Name
+  - name: Enabled
+    type: "bool"
+    fromList: rule.Enabled
+
+stringRepresentation:
+  field: RuleName
