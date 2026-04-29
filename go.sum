@@ -58,6 +58,8 @@ github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.13.21 h1:c31//R3x
 github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.13.21/go.mod h1:r6+pf23ouCB718FUxaqzZdbpYFyDtehyZcmP5KL9FkA=
 github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.19.21 h1:ZlvrNcHSFFWURB8avufQq9gFsheUgjVD9536obIknfM=
 github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.19.21/go.mod h1:cv3TNhVrssKR0O/xxLJVRfd2oazSnZnkUeTf6ctUwfQ=
+github.com/aws/aws-sdk-go-v2/service/iotsitewise v1.52.20 h1:qBa6XJcVHmgEB9cpAU4aMdN6Km6/jiVKGKd9xrfF1bo=
+github.com/aws/aws-sdk-go-v2/service/iotsitewise v1.52.20/go.mod h1:yTAUwO3uUVB8VljWpZcSI8jc0ncvW6Tzz1yvPmUvRgQ=
 github.com/aws/aws-sdk-go-v2/service/iotwireless v1.54.8 h1:zRXY4bK3Ful6II1ABQEEzbctOKSrZAzgr+QrDnXqA1U=
 github.com/aws/aws-sdk-go-v2/service/iotwireless v1.54.8/go.mod h1:vpQRj20mPOwROfR3Tschm9VJLfmT33z0o3bUYS6cjJo=
 github.com/aws/aws-sdk-go-v2/service/ivs v1.48.13 h1:DrEOdI5Kx56mn4T0fvjwQqvVz+e7b7QIPXYmf/LGdYk=

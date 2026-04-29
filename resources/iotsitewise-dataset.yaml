@@ -1,0 +1,56 @@
+service: iotsitewise
+resource: dataset
+resourceName: IoTSiteWiseDataset
+scope: account
+sdkPackage: iotsitewise
+extraImports:
+  - '"github.com/aws/aws-sdk-go-v2/service/iotsitewise/types"'
+
+list:
+  strategy: flat
+  operation: ListDatasets
+  pagination: paginator
+  itemsField: DatasetSummaries
+  override: |
+    opts := o.(*nuke.ListerOpts)
+    svc := l.svc
+    if svc == nil {
+        svc = iotsitewise.NewFromConfig(*opts.Config)
+    }
+    var resources []resource.Resource
+
+    paginator := iotsitewise.NewListDatasetsPaginator(svc, &iotsitewise.ListDatasetsInput{
+        SourceType: types.DatasetSourceTypeKendra,
+    })
+
+    for paginator.HasMorePages() {
+        resp, err := paginator.NextPage(ctx)
+        if err != nil {
+            return nil, err
+        }
+
+        for _, item := range resp.DatasetSummaries {
+            resources = append(resources, &IoTSiteWiseDataset{
+                svc:       svc,
+                DatasetID: item.Id,
+                Name:      item.Name,
+            })
+        }
+    }
+
+    return resources, nil
+
+delete:
+  operation: DeleteDataset
+  inputFields:
+    - DatasetId
+
+fields:
+  - name: DatasetID
+    type: "*string"
+    propertyTag: 'property:"name=DatasetId"'
+  - name: Name
+    type: "*string"
+
+stringRepresentation:
+  field: DatasetID

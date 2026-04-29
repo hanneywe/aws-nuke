@@ -1,0 +1,44 @@
+service: iotsitewise
+resource: asset-model-composite-model
+resourceName: IoTSiteWiseAssetModelCompositeModel
+scope: account
+sdkPackage: iotsitewise
+
+list:
+  strategy: nested
+  levels:
+    - operation: ListAssetModels
+      pagination: paginator
+      itemsField: AssetModelSummaries
+      itemType: AssetModelSummary
+      iteratorVar: model
+    - operation: ListAssetModelCompositeModels
+      pagination: paginator
+      itemsField: AssetModelCompositeModelSummaries
+      itemType: AssetModelCompositeModelSummary
+      iteratorVar: composite
+      parentInputMapping:
+        AssetModelId: model.Id
+
+delete:
+  operation: DeleteAssetModelCompositeModel
+  inputFields:
+    - AssetModelId
+    - AssetModelCompositeModelId
+
+fields:
+  - name: AssetModelId
+    type: "*string"
+    fromList: model.Id
+  - name: AssetModelCompositeModelId
+    type: "*string"
+    fromList: composite.Id
+  - name: Name
+    type: "*string"
+    fromList: composite.Name
+  - name: Type
+    type: "*string"
+    fromList: composite.Type
+
+stringRepresentation:
+  field: AssetModelCompositeModelId
