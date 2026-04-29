@@ -26,6 +26,14 @@ func init() {
 		Scope:    nuke.Account,
 		Resource: &NetworkManagerGlobalNetwork{},
 		Lister:   &NetworkManagerGlobalNetworkLister{},
+		DependsOn: []string{
+			NetworkManagerSiteResource,
+			NetworkManagerDeviceResource,
+			NetworkManagerCoreNetworkResource,
+			NetworkManagerConnectPeerResource,
+			NetworkManagerNetworkAttachmentResource,
+			NetworkManagerTransitGatewayRegistrationResource,
+		},
 	})
 }
 
