@@ -35,6 +35,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/route53resolver v1.41.5
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.97.3
 	github.com/aws/aws-sdk-go-v2/service/s3control v1.52.7
+	github.com/aws/aws-sdk-go-v2/service/sfn v1.40.10
 	github.com/aws/aws-sdk-go-v2/service/shield v1.34.18
 	github.com/aws/aws-sdk-go-v2/service/signer v1.32.5
 	github.com/aws/aws-sdk-go-v2/service/snowball v1.35.21
