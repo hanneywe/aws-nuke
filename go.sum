@@ -24,6 +24,8 @@ github.com/aws/aws-sdk-go-v2/service/apigateway v1.28.12 h1:m7O0X55xKIbwUnGcHOs3
 github.com/aws/aws-sdk-go-v2/service/apigateway v1.28.12/go.mod h1:n1JY79L1AAtLhKJXIRv9pACaj9IAuoOOAz6cekbTEkk=
 github.com/aws/aws-sdk-go-v2/service/applicationdiscoveryservice v1.35.14 h1:I0jw6f0bnaDm4lbK7Bn7B7dWGwRN9r1d2qYqMrJW8nk=
 github.com/aws/aws-sdk-go-v2/service/applicationdiscoveryservice v1.35.14/go.mod h1:T21micVPTEsCbELIE419Gv1eLEM5onJGA1XKA6whLNA=
+github.com/aws/aws-sdk-go-v2/service/apprunner v1.39.13 h1:jlizMAx+BF39bt4JrhOb4v25MT4Kf+smmukHidqK3eI=
+github.com/aws/aws-sdk-go-v2/service/apprunner v1.39.13/go.mod h1:15y47yWDTr124p45NIzvVF8mruxBccOEpGQflaJexDg=
 github.com/aws/aws-sdk-go-v2/service/appstream v1.57.1 h1:CiCgPDYEn70zYc+kmm7g27IZx3sBWXYATlSuV0cnGCU=
 github.com/aws/aws-sdk-go-v2/service/appstream v1.57.1/go.mod h1:qv9Smf3bIg1fu9zXv3lu1ZKSCeuornNp6faT5WcW8Wg=
 github.com/aws/aws-sdk-go-v2/service/appsync v1.42.3 h1:Q903rtU9x/OmFMqXGm3033459yx/M1F9UcOWwoowH+s=
