@@ -34,6 +34,8 @@ github.com/aws/aws-sdk-go-v2/service/cloudfront v1.44.12 h1:GEdQ1mVjgYH/c7vKrt+r
 github.com/aws/aws-sdk-go-v2/service/cloudfront v1.44.12/go.mod h1:nr2/4ch+huedh56oGZClTeCVENvMBqeEkzkObAFCDQM=
 github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.67.0 h1:8PdeEH2umADwg0j0bNxt9AYaNgVqUP50KMlMNkcgdZ8=
 github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.67.0/go.mod h1:PobeppEnIjw4pcgjFryNDZCTH7AiqZw0yb5r98Gvf9c=
+github.com/aws/aws-sdk-go-v2/service/codeartifact v1.38.22 h1:VT9hQJLr9c4Zf0JWP9cP+ED5jO7/rc8cDjqmsguFNrw=
+github.com/aws/aws-sdk-go-v2/service/codeartifact v1.38.22/go.mod h1:2ludefWMBu38t+3oPa7MPdF2C+TGV2tQTdCIgempOh0=
 github.com/aws/aws-sdk-go-v2/service/codebuild v1.68.13 h1:EEdmtkVROLA9VniV5STKv/EfEgV+n9NFBpOYU1jN9As=
 github.com/aws/aws-sdk-go-v2/service/codebuild v1.68.13/go.mod h1:+pwMMAvpmRuI7oHsTT2F5Lrp4ZQV2RF7b6tiaBj3Ugk=
 github.com/aws/aws-sdk-go-v2/service/codeconnections v1.10.20 h1:ppzpakRz3TPdO9OYlOOmg5m1IZIwgnIQmnPYLaFBeUE=

@@ -1,0 +1,140 @@
+service: codeartifactv2
+resource: package-version
+resourceName: CodeArtifactPackageVersion
+scope: account
+sdkPackage: codeartifact
+
+extraImports:
+  - 'codeartifacttypes "github.com/aws/aws-sdk-go-v2/service/codeartifact/types"'
+
+list:
+  strategy: nested
+  levels:
+    - operation: ListDomains
+      pagination: paginator
+      itemsField: Domains
+      iteratorVar: domain
+    - operation: ListRepositoriesInDomain
+      pagination: paginator
+      itemsField: Repositories
+      iteratorVar: repo
+      parentInputMapping:
+        Domain: domain.Name
+    - operation: ListPackages
+      pagination: paginator
+      itemsField: Packages
+      iteratorVar: pkg
+      parentInputMapping:
+        Domain: domain.Name
+        Repository: repo.Name
+  override: |
+    opts := o.(*nuke.ListerOpts)
+    svc := l.svc
+    if svc == nil {
+        svc = codeartifact.NewFromConfig(*opts.Config)
+    }
+    var resources []resource.Resource
+
+    domainPaginator := codeartifact.NewListDomainsPaginator(svc, &codeartifact.ListDomainsInput{})
+    for domainPaginator.HasMorePages() {
+        domainResp, err := domainPaginator.NextPage(ctx)
+        if err != nil {
+            return nil, err
+        }
+        for _, domain := range domainResp.Domains {
+            repoPaginator := codeartifact.NewListRepositoriesInDomainPaginator(svc, &codeartifact.ListRepositoriesInDomainInput{
+                Domain: domain.Name,
+            })
+            for repoPaginator.HasMorePages() {
+                repoResp, err := repoPaginator.NextPage(ctx)
+                if err != nil {
+                    return nil, err
+                }
+                for _, repo := range repoResp.Repositories {
+                    pkgPaginator := codeartifact.NewListPackagesPaginator(svc, &codeartifact.ListPackagesInput{
+                        Domain:     domain.Name,
+                        Repository: repo.Name,
+                    })
+                    for pkgPaginator.HasMorePages() {
+                        pkgResp, err := pkgPaginator.NextPage(ctx)
+                        if err != nil {
+                            return nil, err
+                        }
+                        for _, pkg := range pkgResp.Packages {
+                            versionPaginator := codeartifact.NewListPackageVersionsPaginator(svc, &codeartifact.ListPackageVersionsInput{
+                                Domain:     domain.Name,
+                                Repository: repo.Name,
+                                Package:    pkg.Package,
+                                Format:     pkg.Format,
+                                Namespace:  pkg.Namespace,
+                            })
+                            for versionPaginator.HasMorePages() {
+                                versionResp, err := versionPaginator.NextPage(ctx)
+                                if err != nil {
+                                    return nil, err
+                                }
+                                for _, version := range versionResp.Versions {
+                                    resources = append(resources, &CodeArtifactPackageVersion{
+                                        svc:        svc,
+                                        Domain:     domain.Name,
+                                        Repository: repo.Name,
+                                        Package:    pkg.Package,
+                                        Format:     aws.String(string(pkg.Format)),
+                                        Namespace:  pkg.Namespace,
+                                        Version:    version.Version,
+                                        Status:     aws.String(string(version.Status)),
+                                    })
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return resources, nil
+
+delete:
+  operation: DeletePackageVersions
+  inputFields:
+    - Domain
+    - Repository
+    - Package
+    - Format
+    - Namespace
+    - Version
+  override: |
+    _, err := r.svc.DeletePackageVersions(ctx, &codeartifact.DeletePackageVersionsInput{
+        Domain:     r.Domain,
+        Repository: r.Repository,
+        Package:    r.Package,
+        Format:     codeartifacttypes.PackageFormat(aws.ToString(r.Format)),
+        Namespace:  r.Namespace,
+        Versions:   []string{aws.ToString(r.Version)},
+    })
+    return err
+
+fields:
+  - name: Domain
+    type: "*string"
+  - name: Repository
+    type: "*string"
+  - name: Package
+    type: "*string"
+  - name: Format
+    type: "*string"
+  - name: Namespace
+    type: "*string"
+  - name: Version
+    type: "*string"
+  - name: Status
+    type: "*string"
+
+stringRepresentation:
+  format: "%s:%s/%s@%s"
+  fields:
+    - Domain
+    - Repository
+    - Package
+    - Version
