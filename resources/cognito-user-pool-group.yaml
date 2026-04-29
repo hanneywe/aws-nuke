@@ -1,0 +1,41 @@
+service: cognitov2
+resource: user-pool-group
+resourceName: CognitoUserPoolGroup
+scope: account
+sdkPackage: cognitoidentityprovider
+
+list:
+  strategy: nested
+  levels:
+    - operation: ListUserPools
+      pagination: paginator
+      itemsField: UserPools
+      itemType: UserPoolDescriptionType
+      iteratorVar: pool
+    - operation: ListGroups
+      pagination: paginator
+      itemsField: Groups
+      itemType: GroupType
+      iteratorVar: group
+      parentInputMapping:
+        UserPoolId: pool.Id
+
+delete:
+  operation: DeleteGroup
+  inputFields:
+    - GroupName
+    - UserPoolId
+
+fields:
+  - name: UserPoolId
+    type: "*string"
+    fromList: pool.Id
+  - name: GroupName
+    type: "*string"
+    fromList: group.GroupName
+  - name: Description
+    type: "*string"
+    fromList: group.Description
+
+stringRepresentation:
+  field: GroupName
