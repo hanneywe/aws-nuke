@@ -1,0 +1,35 @@
+service: eventbridge
+resource: event-bus
+resourceName: EventBridgeEventBus
+scope: account
+sdkPackage: eventbridge
+
+list:
+  strategy: flat
+  operation: ListEventBuses
+  pagination: nextToken
+  itemsField: EventBuses
+  itemType: EventBus
+
+delete:
+  operation: DeleteEventBus
+  inputFields:
+    - Name
+
+fields:
+  - name: Name
+    type: "*string"
+    fromList: Name
+  - name: Arn
+    type: "*string"
+    fromList: Arn
+
+filters:
+  - field: Name
+    operator: equals
+    values:
+      - "default"
+    message: "cannot delete default event bus"
+
+stringRepresentation:
+  field: Name
