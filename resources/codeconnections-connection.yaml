@@ -1,0 +1,34 @@
+service: codeconnections
+resource: connection
+resourceName: CodeConnectionsConnection
+scope: account
+sdkPackage: codeconnections
+
+list:
+  strategy: flat
+  operation: ListConnections
+  pagination: paginator
+  itemsField: Connections
+  itemType: Connection
+
+delete:
+  operation: DeleteConnection
+  inputFields:
+    - ConnectionArn
+
+fields:
+  - name: ConnectionArn
+    type: "*string"
+    fromList: ConnectionArn
+  - name: ConnectionName
+    type: "*string"
+    fromList: ConnectionName
+  - name: ConnectionStatus
+    type: "*string"
+    fromList: ConnectionStatus
+  - name: ProviderType
+    type: "*string"
+    fromList: ProviderType
+
+stringRepresentation:
+  field: ConnectionName
