@@ -32,6 +32,8 @@ github.com/aws/aws-sdk-go-v2/service/bedrockruntime v1.50.5 h1:ZGTl4Rxft1uyENAlG
 github.com/aws/aws-sdk-go-v2/service/bedrockruntime v1.50.5/go.mod h1:jnugA+VgESQGgXuEKK6zVToET/DtODq7LQYpe+BkKT4=
 github.com/aws/aws-sdk-go-v2/service/cloudfront v1.44.12 h1:GEdQ1mVjgYH/c7vKrt+rrPS8Ax3wgqOHOBudPE7UIJs=
 github.com/aws/aws-sdk-go-v2/service/cloudfront v1.44.12/go.mod h1:nr2/4ch+huedh56oGZClTeCVENvMBqeEkzkObAFCDQM=
+github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.55.8 h1:m8K+38xc7Hns3qR1uyMLOwZ//CGuTzo4oOh6Alxrzc0=
+github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.55.8/go.mod h1:y9nuC8lIFApxiHJUjvcsoayNivWaBGb23uxhna+OXhs=
 github.com/aws/aws-sdk-go-v2/service/cloudwatch v1.56.0 h1:ud2A364lLBkhGAC7oYw/1xg9BF4acwJC+qdLykxy83o=
 github.com/aws/aws-sdk-go-v2/service/cloudwatch v1.56.0/go.mod h1:+bNfizG/fpRGctZuVeH8uWht/0BLD9wUyXOKM4VaCVA=
 github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.67.0 h1:8PdeEH2umADwg0j0bNxt9AYaNgVqUP50KMlMNkcgdZ8=
