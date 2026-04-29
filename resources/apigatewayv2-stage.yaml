@@ -1,0 +1,41 @@
+service: apigatewayv2
+resource: stage
+resourceName: APIGatewayV2Stage
+scope: account
+sdkPackage: apigatewayv2
+
+list:
+  strategy: nested
+  levels:
+    - operation: GetApis
+      pagination: ""
+      itemsField: Items
+      itemType: Api
+      iteratorVar: api
+    - operation: GetStages
+      pagination: ""
+      itemsField: Items
+      itemType: Stage
+      iteratorVar: stage
+      parentInputMapping:
+        ApiId: api.ApiId
+
+delete:
+  operation: DeleteStage
+  inputFields:
+    - ApiId
+    - StageName
+
+fields:
+  - name: ApiId
+    type: "*string"
+    fromList: api.ApiId
+  - name: StageName
+    type: "*string"
+    fromList: stage.StageName
+  - name: Tags
+    type: "map[string]string"
+    fromList: stage.Tags
+
+stringRepresentation:
+  field: StageName
