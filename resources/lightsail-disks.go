@@ -3,10 +3,13 @@ package resources
 import (
 	"context"
 
+	"github.com/gotidy/ptr"
+
 	"github.com/aws/aws-sdk-go/service/lightsail" //nolint:staticcheck
 
 	"github.com/ekristen/libnuke/pkg/registry"
 	"github.com/ekristen/libnuke/pkg/resource"
+	libsettings "github.com/ekristen/libnuke/pkg/settings"
 
 	"github.com/ekristen/aws-nuke/v3/pkg/nuke"
 )
@@ -19,6 +22,9 @@ func init() {
 		Scope:    nuke.Account,
 		Resource: &LightsailDisk{},
 		Lister:   &LightsailDiskLister{},
+		Settings: []string{
+			"ForceDeleteAddOns",
+		},
 	})
 }
 
@@ -58,11 +64,17 @@ func (l *LightsailDiskLister) List(_ context.Context, o interface{}) ([]resource
 type LightsailDisk struct {
 	svc      *lightsail.Lightsail
 	diskName *string
+	settings *libsettings.Setting
+}
+
+func (f *LightsailDisk) Settings(setting *libsettings.Setting) {
+	f.settings = setting
 }
 
 func (f *LightsailDisk) Remove(_ context.Context) error {
 	_, err := f.svc.DeleteDisk(&lightsail.DeleteDiskInput{
-		DiskName: f.diskName,
+		DiskName:          f.diskName,
+		ForceDeleteAddOns: ptr.Bool(f.settings.GetBool("ForceDeleteAddOns")),
 	})
 
 	return err

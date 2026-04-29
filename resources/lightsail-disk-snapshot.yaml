@@ -1,0 +1,30 @@
+service: lightsail
+resource: disk-snapshot
+resourceName: LightsailDiskSnapshot
+scope: account
+sdkPackage: lightsail
+
+list:
+  strategy: flat
+  operation: GetDiskSnapshots
+  pagination: none
+  itemsField: DiskSnapshots
+
+delete:
+  operation: DeleteDiskSnapshot
+  inputFields:
+    - DiskSnapshotName
+
+fields:
+  - name: DiskSnapshotName
+    type: "*string"
+    fromList: Name
+  - name: FromDiskName
+    type: "*string"
+    fromList: FromDiskName
+  - name: SizeInGb
+    type: "*int32"
+    fromList: SizeInGb
+
+stringRepresentation:
+  field: DiskSnapshotName

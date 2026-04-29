@@ -1,0 +1,36 @@
+service: lightsail
+resource: bucket-access-key
+resourceName: LightsailBucketAccessKey
+scope: account
+sdkPackage: lightsail
+
+list:
+  strategy: nested
+  levels:
+    - operation: GetBuckets
+      pagination: ""
+      itemsField: Buckets
+      iteratorVar: bucket
+    - operation: GetBucketAccessKeys
+      pagination: ""
+      itemsField: AccessKeys
+      iteratorVar: key
+      parentInputMapping:
+        BucketName: bucket.Name
+
+delete:
+  operation: DeleteBucketAccessKey
+  inputFields:
+    - BucketName
+    - AccessKeyId
+
+fields:
+  - name: BucketName
+    type: "*string"
+    fromList: bucket.Name
+  - name: AccessKeyId
+    type: "*string"
+    fromList: key.AccessKeyId
+
+stringRepresentation:
+  field: AccessKeyId

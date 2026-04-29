@@ -1,0 +1,31 @@
+service: lightsail
+resource: relational-database
+resourceName: LightsailRelationalDatabase
+scope: account
+sdkPackage: lightsail
+
+list:
+  strategy: flat
+  operation: GetRelationalDatabases
+  pagination: none
+  itemsField: RelationalDatabases
+  itemType: RelationalDatabase
+
+delete:
+  operation: DeleteRelationalDatabase
+  inputFields:
+    - RelationalDatabaseName
+
+fields:
+  - name: RelationalDatabaseName
+    type: "*string"
+    fromList: Name
+  - name: Engine
+    type: "*string"
+    fromList: Engine
+  - name: EngineVersion
+    type: "*string"
+    fromList: EngineVersion
+
+stringRepresentation:
+  field: RelationalDatabaseName
