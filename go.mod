@@ -25,6 +25,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/eks v1.74.10
 	github.com/aws/aws-sdk-go-v2/service/iam v1.38.10
 	github.com/aws/aws-sdk-go-v2/service/inspector2 v1.44.12
+	github.com/aws/aws-sdk-go-v2/service/ivschat v1.21.19
 	github.com/aws/aws-sdk-go-v2/service/ivsrealtime v1.33.0
 	github.com/aws/aws-sdk-go-v2/service/kafkaconnect v1.30.3
 	github.com/aws/aws-sdk-go-v2/service/kendraranking v1.15.24

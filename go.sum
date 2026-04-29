@@ -58,6 +58,8 @@ github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.13.21 h1:c31//R3x
 github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.13.21/go.mod h1:r6+pf23ouCB718FUxaqzZdbpYFyDtehyZcmP5KL9FkA=
 github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.19.21 h1:ZlvrNcHSFFWURB8avufQq9gFsheUgjVD9536obIknfM=
 github.com/aws/aws-sdk-go-v2/service/internal/s3shared v1.19.21/go.mod h1:cv3TNhVrssKR0O/xxLJVRfd2oazSnZnkUeTf6ctUwfQ=
+github.com/aws/aws-sdk-go-v2/service/ivschat v1.21.19 h1:ciLXOD+QG3FiZWdegI4jmQfApcpBxkbsR1dpjFfB0F4=
+github.com/aws/aws-sdk-go-v2/service/ivschat v1.21.19/go.mod h1:6adOYXod8rv/Ww3UudFeOj52evoGnV5Y5F3lJjGWk8o=
 github.com/aws/aws-sdk-go-v2/service/ivsrealtime v1.33.0 h1:ctlWXSuUbh6il3jGmIfwCxktKCZdBnIHSEAB+OKJPxI=
 github.com/aws/aws-sdk-go-v2/service/ivsrealtime v1.33.0/go.mod h1:L8yH+xoFKlFKUhBSoyAboE2p7Sq3zV364Sqy+xaYR1k=
 github.com/aws/aws-sdk-go-v2/service/kafkaconnect v1.30.3 h1:UjBnjOlbgB/DP1K4TrVtEHv7VlcZud4qkyIEN9IEIGM=
