@@ -36,6 +36,8 @@ github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.67.0 h1:8PdeEH2umADwg0j0b
 github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.67.0/go.mod h1:PobeppEnIjw4pcgjFryNDZCTH7AiqZw0yb5r98Gvf9c=
 github.com/aws/aws-sdk-go-v2/service/databasemigrationservice v1.61.9 h1:TdwG480ZMSzDfwwo9annrKWWmXQVGtbETIeH8sAFmhA=
 github.com/aws/aws-sdk-go-v2/service/databasemigrationservice v1.61.9/go.mod h1:I/976DEXr3xM+PaU82K6qvodjpNaQUclg9kio5L7YJ0=
+github.com/aws/aws-sdk-go-v2/service/deadline v1.26.1 h1:GdEmyHzS9RlPK67IpMFpNvVOUOHS0CPfg4RguuzhIqI=
+github.com/aws/aws-sdk-go-v2/service/deadline v1.26.1/go.mod h1:tjdmxI6ob+uczIz9SCjuEYzi9KqJZBCpLhXXVC3b4d4=
 github.com/aws/aws-sdk-go-v2/service/devicefarm v1.38.7 h1:iJ+5tZ8uM/Kc6fYL6DPcakB58IKXeL2D0sLwTkudsls=
 github.com/aws/aws-sdk-go-v2/service/devicefarm v1.38.7/go.mod h1:58Ce7vV61YRwnO5zcnyE4mazxtEUnIAmOI5JUdW1Eio=
 github.com/aws/aws-sdk-go-v2/service/directconnect v1.38.14 h1:ikGt5kTzRE0+ehjewNLHjEO9pgAjdLv2IiwUuIdWagw=
