@@ -1,0 +1,31 @@
+service: dlm
+resource: lifecycle-policy
+resourceName: DLMLifecyclePolicy
+scope: account
+sdkPackage: dlm
+
+list:
+  strategy: flat
+  operation: GetLifecyclePolicies
+  pagination: none
+  itemsField: Policies
+  itemType: LifecyclePolicySummary
+
+delete:
+  operation: DeleteLifecyclePolicy
+  inputFields:
+    - PolicyID
+
+fields:
+  - name: PolicyID
+    type: "*string"
+    fromList: PolicyId
+  - name: Description
+    type: "*string"
+    fromList: Description
+  - name: Tags
+    type: "map[string]string"
+    fromList: Tags
+
+stringRepresentation:
+  field: PolicyID
