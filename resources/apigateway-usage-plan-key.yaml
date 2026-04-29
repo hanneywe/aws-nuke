@@ -1,0 +1,44 @@
+service: apigateway
+resource: usage-plan-key
+resourceName: APIGatewayUsagePlanKey
+scope: account
+sdkPackage: apigateway
+
+list:
+  strategy: nested
+  levels:
+    - operation: GetUsagePlans
+      pagination: ""
+      itemsField: Items
+      itemType: UsagePlan
+      iteratorVar: plan
+    - operation: GetUsagePlanKeys
+      pagination: ""
+      itemsField: Items
+      itemType: UsagePlanKey
+      iteratorVar: key
+      parentInputMapping:
+        UsagePlanId: plan.Id
+
+delete:
+  operation: DeleteUsagePlanKey
+  inputFields:
+    - UsagePlanId
+    - KeyId
+
+fields:
+  - name: UsagePlanId
+    type: "*string"
+    fromList: plan.Id
+  - name: KeyId
+    type: "*string"
+    fromList: key.Id
+  - name: KeyName
+    type: "*string"
+    fromList: key.Name
+  - name: KeyType
+    type: "*string"
+    fromList: key.Type
+
+stringRepresentation:
+  field: KeyId
