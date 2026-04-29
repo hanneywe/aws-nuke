@@ -68,6 +68,8 @@ github.com/aws/aws-sdk-go-v2/service/neptunegraph v1.17.6 h1:sA9Ll0/+rmaz08n5CHB
 github.com/aws/aws-sdk-go-v2/service/neptunegraph v1.17.6/go.mod h1:rbHtwGyKB0puYUphsbaSq2vQuoYfQ7Vx/ZBx9h4CnSU=
 github.com/aws/aws-sdk-go-v2/service/networkfirewall v1.53.0 h1:FHl1QPk+MTUjcbGtnNfcVnq5bPkP71Tbzt++qQ/dCnY=
 github.com/aws/aws-sdk-go-v2/service/networkfirewall v1.53.0/go.mod h1:EiHBjTVCeOUX045RTpHUuqrtexp4OtSbMLj+nXiaaHw=
+github.com/aws/aws-sdk-go-v2/service/organizations v1.51.1 h1:5hM1jQjIzEiu07ZqQ8iI4sC+06C8a+idNtytO65dhAw=
+github.com/aws/aws-sdk-go-v2/service/organizations v1.51.1/go.mod h1:urLFj1twuR/h5T0wN/2/kmY1gxBFa1tTKr+c60lZ2fA=
 github.com/aws/aws-sdk-go-v2/service/outposts v1.57.14 h1:KDh3abF5OCx/s7rQ/+uevxVtbWbmjTGNG1HDQX+0P+A=
 github.com/aws/aws-sdk-go-v2/service/outposts v1.57.14/go.mod h1:K5FFS4ODQIoeQW5qlUsu4uuROScM46xLBHskBigzf5E=
 github.com/aws/aws-sdk-go-v2/service/panorama v1.27.20 h1:mn+pcT3V/cI8ZP3YAvXTgt8SqDIaCDMiGyrC+kusa6U=
