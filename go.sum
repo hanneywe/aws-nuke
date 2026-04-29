@@ -40,6 +40,8 @@ github.com/aws/aws-sdk-go-v2/service/dsql v1.1.2 h1:8czLAorDvDBEOMnZVOeEP0vW3k5x
 github.com/aws/aws-sdk-go-v2/service/dsql v1.1.2/go.mod h1:StDU/D7R42LhrKp24PGzvxyKjjDm0lwo9JMwuy2qbo4=
 github.com/aws/aws-sdk-go-v2/service/ec2 v1.239.0 h1:pPuzRQQoRY7pwxlNf1//yz5goxB98p1KMa3cdBO+E1E=
 github.com/aws/aws-sdk-go-v2/service/ec2 v1.239.0/go.mod h1:lhyI/MJGGbPnOdYmmQRZe07S+2fW2uWI1XrUfAZgXLM=
+github.com/aws/aws-sdk-go-v2/service/ecr v1.56.1 h1:aVrtUrtZN2aGNuI+Pt1XR9ofsochGVepv40nEl4D1dQ=
+github.com/aws/aws-sdk-go-v2/service/ecr v1.56.1/go.mod h1:j2lU1Ko0NlsZRXXQ8rSs561bhAC+HN2ob+UREFuSfIA=
 github.com/aws/aws-sdk-go-v2/service/ecs v1.54.6 h1:TE4XBXeHvTTnD4rISqqMET4TwE7St4MrZvnJp+Gg5tY=
 github.com/aws/aws-sdk-go-v2/service/ecs v1.54.6/go.mod h1:wAtdeFanDuF9Re/ge4DRDaYe3Wy1OGrU7jG042UcuI4=
 github.com/aws/aws-sdk-go-v2/service/efs v1.35.4 h1:QJHwC9X5TxJJGdesIJP65gAsu0gXCGs0nF2/wBe4aAA=
