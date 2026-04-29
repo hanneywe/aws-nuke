@@ -1,0 +1,90 @@
+service: customerprofiles
+resource: profile
+resourceName: CustomerProfilesProfile
+scope: account
+sdkPackage: customerprofiles
+
+list:
+  strategy: nested
+  levels:
+    - operation: ListDomains
+      pagination: nextToken
+      itemsField: Items
+      iteratorVar: domain
+    - operation: SearchProfiles
+      pagination: nextToken
+      itemsField: Items
+      iteratorVar: profile
+      parentInputMapping:
+        DomainName: domain.DomainName
+  override: |
+    opts := o.(*nuke.ListerOpts)
+    svc := l.svc
+    if svc == nil {
+        svc = customerprofiles.NewFromConfig(*opts.Config)
+    }
+    var resources []resource.Resource
+
+    domainParams := &customerprofiles.ListDomainsInput{}
+    for {
+        domainResp, err := svc.ListDomains(ctx, domainParams)
+        if err != nil {
+            return nil, err
+        }
+
+        for _, domain := range domainResp.Items {
+            searchParams := &customerprofiles.SearchProfilesInput{
+                DomainName: domain.DomainName,
+                KeyName:    aws.String("_profileId"),
+                Values:     []string{"*"},
+                MaxResults: aws.Int32(100),
+            }
+            for {
+                searchResp, err := svc.SearchProfiles(ctx, searchParams)
+                if err != nil {
+                    return nil, err
+                }
+
+                for _, profile := range searchResp.Items {
+                    resources = append(resources, &CustomerProfilesProfile{
+                        svc:        svc,
+                        DomainName: domain.DomainName,
+                        ProfileId:  profile.ProfileId,
+                        FirstName:  profile.FirstName,
+                        LastName:   profile.LastName,
+                    })
+                }
+
+                if searchResp.NextToken == nil {
+                    break
+                }
+                searchParams.NextToken = searchResp.NextToken
+            }
+        }
+
+        if domainResp.NextToken == nil {
+            break
+        }
+        domainParams.NextToken = domainResp.NextToken
+    }
+
+    return resources, nil
+
+delete:
+  operation: DeleteProfile
+  inputFields:
+    - DomainName
+    - ProfileId
+
+fields:
+  - name: DomainName
+    type: "*string"
+  - name: ProfileId
+    type: "*string"
+  - name: FirstName
+    type: "*string"
+  - name: LastName
+    type: "*string"
+
+stringRepresentation:
+  field: ProfileId
