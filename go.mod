@@ -15,7 +15,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/bedrockagentcorecontrol v1.14.1
 	github.com/aws/aws-sdk-go-v2/service/bedrockruntime v1.50.5
 	github.com/aws/aws-sdk-go-v2/service/cloudfront v1.44.12
-	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.65.0
+	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.67.0
 	github.com/aws/aws-sdk-go-v2/service/docdb v1.41.7
 	github.com/aws/aws-sdk-go-v2/service/docdbelastic v1.15.5
 	github.com/aws/aws-sdk-go-v2/service/dsql v1.1.2
@@ -36,6 +36,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.97.3
 	github.com/aws/aws-sdk-go-v2/service/s3control v1.52.7
 	github.com/aws/aws-sdk-go-v2/service/shield v1.34.18
+	github.com/aws/aws-sdk-go-v2/service/snowball v1.35.21
 	github.com/aws/aws-sdk-go-v2/service/sns v1.39.15
 	github.com/aws/aws-sdk-go-v2/service/ssm v1.68.4
 	github.com/aws/aws-sdk-go-v2/service/ssmquicksetup v1.3.10
