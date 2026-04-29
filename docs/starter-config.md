@@ -55,13 +55,13 @@ resource-types:
     - RoboMakerSimulationJob
     - RoboMakerRobotApplication
     - RoboMakerSimulationApplication
-    - OpsWorksApp # Deprecated service
-    - OpsWorksInstance # Deprecated service
-    - OpsWorksLayer # Deprecated service
-    - OpsWorksUserProfile # Deprecated service
-    - OpsWorksCMBackup # Deprecated service
-    - OpsWorksCMServer # Deprecated service
-    - OpsWorksCMServerState # Deprecated service
+    - OpsWorksApp # Removed - deprecated service
+    - OpsWorksInstance # Removed - deprecated service
+    - OpsWorksLayer # Removed - deprecated service
+    - OpsWorksUserProfile # Removed - deprecated service
+    - OpsWorksCMBackup # Removed - deprecated service
+    - OpsWorksCMServer # Removed - deprecated service
+    - OpsWorksCMServerState # Removed - deprecated service
     - CodeStarProject # Deprecated service
     - CodeStarConnection # Deprecated service
     - CodeStarNotification # Deprecated service

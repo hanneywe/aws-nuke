@@ -34,7 +34,7 @@ resource-types:
   includes:
     - "Cognito*"
   excludes:
-    - "OpsWorks*"
+    - "CloudSearch*"
 ```
 
 ### Account Config
@@ -46,6 +46,6 @@ accounts:
       includes:
         - "Cognito*"
       excludes:
-        - "OpsWorks*"
+        - "CloudSearch*"
 ```
 

@@ -49,9 +49,6 @@ presets:
       EC2VPC:
         - type: "contains"
           value: "aws-controltower"
-      OpsWorksUserProfile:
-        - type: "contains"
-          value: "AWSControlTowerExecution"
       CloudWatchLogsLogGroup:
         - type: "contains"
           value: "aws-controltower"

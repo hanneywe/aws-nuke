@@ -99,6 +99,7 @@ nav:
     - Examples & Presets: config-contrib.md
   - Development:
     - Overview: development.md
+    - Code Generation Tool: codegen.md
     - Documentation: documentation.md
     - Contributing: contributing.md
     - Standards: standards.md
@@ -533,13 +534,7 @@ nav:
     - Network Manager Core Network: resources/network-manager-core-network.md
     - Network Manager Global Network: resources/network-manager-global-network.md
     - Network Manager Network Attachment: resources/network-manager-network-attachment.md
-    - Ops Works App: resources/ops-works-app.md
-    - Ops Works Cm Backup: resources/ops-works-cm-backup.md
-    - Ops Works Cm Server State: resources/ops-works-cm-server-state.md
-    - Ops Works Cm Server: resources/ops-works-cm-server.md
-    - Ops Works Instance: resources/ops-works-instance.md
-    - Ops Works Layer: resources/ops-works-layer.md
-    - Ops Works User Profile: resources/ops-works-user-profile.md
+
     - Os Domain: resources/os-domain.md
     - Os Package: resources/os-package.md
     - Os Pipeline: resources/os-pipeline.md
