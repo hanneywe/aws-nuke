@@ -23,6 +23,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/ecs v1.54.6
 	github.com/aws/aws-sdk-go-v2/service/efs v1.35.4
 	github.com/aws/aws-sdk-go-v2/service/eks v1.74.10
+	github.com/aws/aws-sdk-go-v2/service/grafana v1.33.4
 	github.com/aws/aws-sdk-go-v2/service/greengrass v1.32.20
 	github.com/aws/aws-sdk-go-v2/service/groundstation v1.40.3
 	github.com/aws/aws-sdk-go-v2/service/healthlake v1.36.13
