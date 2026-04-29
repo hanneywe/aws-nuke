@@ -16,7 +16,10 @@ import (
 	"github.com/ekristen/aws-nuke/v3/pkg/nuke"
 )
 
-const ACMPCACertificateAuthorityResource = "ACMPCACertificateAuthority"
+const (
+	ACMPCACertificateAuthorityResource = "ACMPCACertificateAuthority"
+	ACMPCAStatusDeleted                = "DELETED"
+)
 
 func init() {
 	registry.Register(&registry.Registration{
@@ -109,7 +112,7 @@ func (r *ACMPCACertificateAuthority) String() string {
 }
 
 func (r *ACMPCACertificateAuthority) Filter() error {
-	if *r.Status == "DELETED" {
+	if *r.Status == ACMPCAStatusDeleted {
 		return fmt.Errorf("already deleted")
 	} else {
 		return nil
