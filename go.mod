@@ -31,6 +31,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/neptunegraph v1.17.6
 	github.com/aws/aws-sdk-go-v2/service/networkfirewall v1.53.0
 	github.com/aws/aws-sdk-go-v2/service/ram v1.34.19
+	github.com/aws/aws-sdk-go-v2/service/route53 v1.62.4
 	github.com/aws/aws-sdk-go-v2/service/route53profiles v1.4.17
 	github.com/aws/aws-sdk-go-v2/service/route53recoverycontrolconfig v1.32.13
 	github.com/aws/aws-sdk-go-v2/service/route53recoveryreadiness v1.26.20
