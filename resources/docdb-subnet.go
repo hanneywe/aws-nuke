@@ -2,6 +2,7 @@ package resources
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/aws/aws-sdk-go-v2/service/docdb"
 	docdbtypes "github.com/aws/aws-sdk-go-v2/service/docdb/types"
@@ -11,7 +12,10 @@ import (
 	"github.com/ekristen/libnuke/pkg/types"
 )
 
-const DocDBSubnetGroupResource = "DocDBSubnetGroup"
+const (
+	DocDBSubnetGroupResource    = "DocDBSubnetGroup"
+	DocDBSubnetGroupNameDefault = "default"
+)
 
 func init() {
 	registry.Register(&registry.Registration{
@@ -59,6 +63,13 @@ type DocDBSubnetGroup struct {
 
 	Name *string
 	Tags []docdbtypes.Tag
+}
+
+func (r *DocDBSubnetGroup) Filter() error {
+	if r.Name != nil && *r.Name == DocDBSubnetGroupNameDefault {
+		return fmt.Errorf("cannot delete default subnet group")
+	}
+	return nil
 }
 
 func (r *DocDBSubnetGroup) Remove(ctx context.Context) error {
