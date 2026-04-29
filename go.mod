@@ -27,6 +27,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/inspector2 v1.44.12
 	github.com/aws/aws-sdk-go-v2/service/lakeformation v1.46.6
 	github.com/aws/aws-sdk-go-v2/service/lambda v1.88.5
+	github.com/aws/aws-sdk-go-v2/service/mediapackagev2 v1.35.5
 	github.com/aws/aws-sdk-go-v2/service/mediapackagevod v1.39.20
 	github.com/aws/aws-sdk-go-v2/service/mediatailor v1.56.3
 	github.com/aws/aws-sdk-go-v2/service/mgn v1.37.6
