@@ -11,6 +11,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/credentials v1.17.71
 	github.com/aws/aws-sdk-go-v2/service/amp v1.36.0
 	github.com/aws/aws-sdk-go-v2/service/apigateway v1.28.12
+	github.com/aws/aws-sdk-go-v2/service/appintegrations v1.37.6
 	github.com/aws/aws-sdk-go-v2/service/applicationdiscoveryservice v1.35.14
 	github.com/aws/aws-sdk-go-v2/service/applicationsignals v1.19.1
 	github.com/aws/aws-sdk-go-v2/service/apprunner v1.39.13
