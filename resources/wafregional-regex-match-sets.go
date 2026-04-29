@@ -14,7 +14,7 @@ import (
 	"github.com/ekristen/aws-nuke/v3/pkg/nuke"
 )
 
-const WAFRegionalRegexMatchSetResource = "WAFRegionalRegexMatchSet" //nolint:gosec,nolintlint
+const WAFRegionalRegexMatchSetResource = "WAFRegionalRegexMatchSet"
 
 func init() {
 	registry.Register(&registry.Registration{
