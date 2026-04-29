@@ -14,7 +14,10 @@ import (
 	"github.com/ekristen/aws-nuke/v3/pkg/nuke"
 )
 
-const DAXSubnetGroupResource = "DAXSubnetGroup"
+const (
+	DAXSubnetGroupResource    = "DAXSubnetGroup"
+	DAXSubnetGroupNameDefault = "default"
+)
 
 func init() {
 	registry.Register(&registry.Registration{
@@ -66,7 +69,7 @@ type DAXSubnetGroup struct {
 }
 
 func (r *DAXSubnetGroup) Filter() error {
-	if *r.Name == "default" { //nolint:goconst,nolintlint
+	if *r.Name == DAXSubnetGroupNameDefault {
 		return fmt.Errorf("cannot delete default DAX Subnet group")
 	}
 	return nil
