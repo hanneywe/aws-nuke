@@ -38,6 +38,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/shield v1.34.18
 	github.com/aws/aws-sdk-go-v2/service/ssmquicksetup v1.3.10
 	github.com/aws/aws-sdk-go-v2/service/sts v1.34.1
+	github.com/aws/aws-sdk-go-v2/service/swf v1.33.15
 	github.com/aws/aws-sdk-go-v2/service/synthetics v1.42.13
 	github.com/aws/aws-sdk-go-v2/service/taxsettings v1.16.21
 	github.com/aws/aws-sdk-go-v2/service/textract v1.40.17
