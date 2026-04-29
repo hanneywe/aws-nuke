@@ -26,6 +26,8 @@ github.com/aws/aws-sdk-go-v2/service/applicationdiscoveryservice v1.35.14 h1:I0j
 github.com/aws/aws-sdk-go-v2/service/applicationdiscoveryservice v1.35.14/go.mod h1:T21micVPTEsCbELIE419Gv1eLEM5onJGA1XKA6whLNA=
 github.com/aws/aws-sdk-go-v2/service/appsync v1.42.3 h1:Q903rtU9x/OmFMqXGm3033459yx/M1F9UcOWwoowH+s=
 github.com/aws/aws-sdk-go-v2/service/appsync v1.42.3/go.mod h1:n3rcdK67R1TkgyXz+48uIUlpiMUwUd7pdVADSEZ5FGA=
+github.com/aws/aws-sdk-go-v2/service/bcmpricingcalculator v1.10.9 h1:ZhZL9nbykBPEvtCRIOYfGMPZ7nRm0YqnR4/eDgy8o1Y=
+github.com/aws/aws-sdk-go-v2/service/bcmpricingcalculator v1.10.9/go.mod h1:bkRrH+LBfsJjvbluV3gPo/cf0DvfPNw0nt7nTAFE1O0=
 github.com/aws/aws-sdk-go-v2/service/bedrockagentcorecontrol v1.14.1 h1:boU3IIsKnHsKzqavdB/xR5bmp8tBPDPkg+FSBxqqEgY=
 github.com/aws/aws-sdk-go-v2/service/bedrockagentcorecontrol v1.14.1/go.mod h1:rSP65Gc7ucwUaO12JTPl8o835CZlN8d3qUFcdT/6dHE=
 github.com/aws/aws-sdk-go-v2/service/bedrockagentruntime v1.51.9 h1:WZTaytCVW1nXMpSC7SxA8SJe6v8z8mSLEGKJnrspSug=
