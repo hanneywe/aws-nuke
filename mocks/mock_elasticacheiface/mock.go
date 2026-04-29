@@ -7,8 +7,8 @@ package mock_elasticacheiface
 import (
 	reflect "reflect"
 
-	aws "github.com/aws/aws-sdk-go/aws" //nolint:staticcheck
-	request "github.com/aws/aws-sdk-go/aws/request" //nolint:staticcheck
+	aws "github.com/aws/aws-sdk-go/aws"                         //nolint:staticcheck
+	request "github.com/aws/aws-sdk-go/aws/request"             //nolint:staticcheck
 	elasticache "github.com/aws/aws-sdk-go/service/elasticache" //nolint:staticcheck
 	gomock "github.com/golang/mock/gomock"
 )

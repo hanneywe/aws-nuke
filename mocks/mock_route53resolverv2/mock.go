@@ -17,7 +17,6 @@ import (
 	gomock "go.uber.org/mock/gomock"
 )
 
-
 // MockRoute53ResolverAPI is a mock of Route53ResolverAPI interface.
 type MockRoute53ResolverAPI struct {
 	ctrl     *gomock.Controller
@@ -281,4 +280,3 @@ func (mr *MockRoute53ResolverAPIMockRecorder) ListResolverQueryLogConfigs(ctx, p
 	varargs := append([]any{ctx, params}, optFns...)
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListResolverQueryLogConfigs", reflect.TypeOf((*MockRoute53ResolverAPI)(nil).ListResolverQueryLogConfigs), varargs...)
 }
-

@@ -7,8 +7,8 @@ package mock_secretsmanageriface
 import (
 	reflect "reflect"
 
-	aws "github.com/aws/aws-sdk-go/aws" //nolint:staticcheck
-	request "github.com/aws/aws-sdk-go/aws/request" //nolint:staticcheck
+	aws "github.com/aws/aws-sdk-go/aws"                               //nolint:staticcheck
+	request "github.com/aws/aws-sdk-go/aws/request"                   //nolint:staticcheck
 	secretsmanager "github.com/aws/aws-sdk-go/service/secretsmanager" //nolint:staticcheck
 	gomock "github.com/golang/mock/gomock"
 )

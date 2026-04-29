@@ -7,9 +7,9 @@ package mock_iamiface
 import (
 	reflect "reflect"
 
-	aws "github.com/aws/aws-sdk-go/aws" //nolint:staticcheck
+	aws "github.com/aws/aws-sdk-go/aws"             //nolint:staticcheck
 	request "github.com/aws/aws-sdk-go/aws/request" //nolint:staticcheck
-	iam "github.com/aws/aws-sdk-go/service/iam" //nolint:staticcheck
+	iam "github.com/aws/aws-sdk-go/service/iam"     //nolint:staticcheck
 	gomock "github.com/golang/mock/gomock"
 )
 

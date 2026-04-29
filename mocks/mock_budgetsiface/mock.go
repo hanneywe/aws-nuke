@@ -7,8 +7,8 @@ package mock_budgetsiface
 import (
 	reflect "reflect"
 
-	aws "github.com/aws/aws-sdk-go/aws" //nolint:staticcheck
-	request "github.com/aws/aws-sdk-go/aws/request" //nolint:staticcheck
+	aws "github.com/aws/aws-sdk-go/aws"                 //nolint:staticcheck
+	request "github.com/aws/aws-sdk-go/aws/request"     //nolint:staticcheck
 	budgets "github.com/aws/aws-sdk-go/service/budgets" //nolint:staticcheck
 	gomock "github.com/golang/mock/gomock"
 )
