@@ -30,6 +30,8 @@ github.com/aws/aws-sdk-go-v2/service/bedrockagentcorecontrol v1.14.1 h1:boU3IIsK
 github.com/aws/aws-sdk-go-v2/service/bedrockagentcorecontrol v1.14.1/go.mod h1:rSP65Gc7ucwUaO12JTPl8o835CZlN8d3qUFcdT/6dHE=
 github.com/aws/aws-sdk-go-v2/service/bedrockruntime v1.50.5 h1:ZGTl4Rxft1uyENAlGESY04hMzE4cLLNUPI7dGw08haw=
 github.com/aws/aws-sdk-go-v2/service/bedrockruntime v1.50.5/go.mod h1:jnugA+VgESQGgXuEKK6zVToET/DtODq7LQYpe+BkKT4=
+github.com/aws/aws-sdk-go-v2/service/chatbot v1.14.20 h1:xfY6jGB4F+U6yQWEQ6zktQ7x+kwqzm9fu7EP2GCyJdo=
+github.com/aws/aws-sdk-go-v2/service/chatbot v1.14.20/go.mod h1:5AXE+IUTIcIdZuUSUbaeN+TfT91r/mMCb3GITaUqfZA=
 github.com/aws/aws-sdk-go-v2/service/chimesdkmeetings v1.33.15 h1:dk3C0JBiv5i0B6/H+rXf/jrmjzlrRLRnNuu8j1BV8hQ=
 github.com/aws/aws-sdk-go-v2/service/chimesdkmeetings v1.33.15/go.mod h1:UvETFbdANaFwAWdhVhcHwske02jty+WQD/x2ENiWy84=
 github.com/aws/aws-sdk-go-v2/service/chimesdkvoice v1.28.13 h1:R85KgGZmXKR5ib5/mD+r6pNp5X/8ltJY5X9jixQJuoU=
