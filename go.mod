@@ -18,6 +18,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/cloudfront v1.44.12
 	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.67.0
 	github.com/aws/aws-sdk-go-v2/service/databasemigrationservice v1.61.9
+	github.com/aws/aws-sdk-go-v2/service/devicefarm v1.38.7
 	github.com/aws/aws-sdk-go-v2/service/directconnect v1.38.14
 	github.com/aws/aws-sdk-go-v2/service/dlm v1.36.1
 	github.com/aws/aws-sdk-go-v2/service/docdb v1.41.7
