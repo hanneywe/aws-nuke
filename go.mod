@@ -133,6 +133,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/sagemaker v1.236.1
 	github.com/aws/aws-sdk-go-v2/service/scheduler v1.17.22
 	github.com/aws/aws-sdk-go-v2/service/schemas v1.34.11
+	github.com/aws/aws-sdk-go-v2/service/servicecatalogappregistry v1.35.20
 	github.com/aws/aws-sdk-go-v2/service/ses v1.34.23
 	github.com/aws/aws-sdk-go-v2/service/sesv2 v1.60.1
 	github.com/aws/aws-sdk-go-v2/service/sfn v1.40.10

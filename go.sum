@@ -274,6 +274,8 @@ github.com/aws/aws-sdk-go-v2/service/scheduler v1.17.22 h1:W6iJpVVBijigufAXBm8f9
 github.com/aws/aws-sdk-go-v2/service/scheduler v1.17.22/go.mod h1:bIL40EgncO7wiyLB3Od2CkxEbU/REwG16lncm7jGqNA=
 github.com/aws/aws-sdk-go-v2/service/schemas v1.34.11 h1:ctHEO6I2nT99hcU8Li0h69x2e0RBpvbpbUwH08ZQWb4=
 github.com/aws/aws-sdk-go-v2/service/schemas v1.34.11/go.mod h1:UGfhvWjhCIM/ecOcwUePzr/0GXdLOG6XzW11yB12fc0=
+github.com/aws/aws-sdk-go-v2/service/servicecatalogappregistry v1.35.20 h1:oe/KIfW6lRkwDBJHI9NyadBLbphgPQEAHwvt+nj6GH0=
+github.com/aws/aws-sdk-go-v2/service/servicecatalogappregistry v1.35.20/go.mod h1:hs9kwXyq6qlFSCUOWjrOAVDc4UikQHYwtdaQzyOSZHU=
 github.com/aws/aws-sdk-go-v2/service/ses v1.34.23 h1:/28W+B4ZT5IPZI7yGDY5ZEwqX6th7kPzLyrF95YnEVs=
 github.com/aws/aws-sdk-go-v2/service/ses v1.34.23/go.mod h1:tOaKEZMRrFX2HiW5uhLFcDc0inFD7qkHJJS8RtfBW7c=
 github.com/aws/aws-sdk-go-v2/service/sesv2 v1.60.1 h1:vcU2PQ6/w4/somGiLRh21oUR3XOo7siz7lfkVtCiRQs=
