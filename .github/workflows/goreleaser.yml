@@ -31,7 +31,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: setup-go
-        uses: actions/setup-go@4b73464bb391d4059bd26b0524d20df3927bd417 # v6
+        uses: actions/setup-go@4a3601121dd01d1626a1e23e37211e3254c1c06c # v6
         with:
           go-version: 1.26.x
       - name: setup qemu
@@ -39,9 +39,9 @@ jobs:
         uses: docker/setup-qemu-action@ce360397dd3f832beb865e1373c09c0e9f86d70a # v4
       - name: setup docker buildx
         id: buildx
-        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
+        uses: docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2 # v4
+        uses: docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121 # v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -76,7 +76,7 @@ jobs:
         run: |
           echo "GORELEASER_ARGS=--snapshot --skip-publish" >> $GITHUB_ENV
       - name: setup quill
-        uses: 1password/load-secrets-action@dafbe7cb03502b260e2b2893c753c352eee545bf # v3
+        uses: 1password/load-secrets-action@92467eb28f72e8255933372f1e0707c567ce2259 # v4
         if: startsWith(github.ref, 'refs/tags/') == true && (github.actor == github.repository_owner || github.actor == 'ekristen-dev[bot]')
         with:
           export-env: true
@@ -88,7 +88,7 @@ jobs:
           QUILL_SIGN_PASSWORD: ${{ secrets.OP_QUILL_SIGN_PASSWORD }}
           QUILL_SIGN_P12: ${{ secrets.OP_QUILL_SIGN_P12 }}
       - name: run goreleaser
-        uses: goreleaser/goreleaser-action@ec59f474b9834571250b370d4735c50f8e2d1e29 # v7
+        uses: goreleaser/goreleaser-action@1a80836c5c9d9e5755a25cb59ec6f45a3b5f41a8 # v7
         with:
           distribution: goreleaser
           version: latest
@@ -101,7 +101,7 @@ jobs:
           docker images --format "{{.Repository}}:{{.Tag}}" | grep "${{ github.repository }}" | xargs -L1 docker push
       - name: upload artifacts
         if: ${{ github.event.pull_request.base.ref == 'main' || github.event_name == 'workflow_dispatch' }}
-        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         with:
           name: binaries
           path: releases/*.tar.gz
