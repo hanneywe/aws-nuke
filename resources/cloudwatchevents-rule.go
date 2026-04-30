@@ -50,12 +50,23 @@ func (l *CloudWatchEventsRuleLister) List(_ context.Context, o interface{}) ([]r
 			}
 
 			for _, rule := range resp.Rules {
+				// Check if this is an AWS-managed rule
+				var managedBy *string
+				descResp, err := svc.DescribeRule(&cloudwatchevents.DescribeRuleInput{
+					Name:         rule.Name,
+					EventBusName: bus.Name,
+				})
+				if err == nil && descResp.ManagedBy != nil {
+					managedBy = descResp.ManagedBy
+				}
+
 				resources = append(resources, &CloudWatchEventsRule{
 					svc:          svc,
 					Name:         rule.Name,
 					ARN:          rule.Arn,
 					State:        rule.State,
 					EventBusName: bus.Name,
+					ManagedBy:    managedBy,
 				})
 			}
 		}
@@ -76,6 +87,14 @@ type CloudWatchEventsRule struct {
 	ARN          *string
 	State        *string
 	EventBusName *string
+	ManagedBy    *string
+}
+
+func (r *CloudWatchEventsRule) Filter() error {
+	if r.ManagedBy != nil {
+		return fmt.Errorf("managed by %s", *r.ManagedBy)
+	}
+	return nil
 }
 
 func (r *CloudWatchEventsRule) Remove(_ context.Context) error {

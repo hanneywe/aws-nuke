@@ -47,6 +47,16 @@ func (l *CloudWatchEventsTargetLister) List(_ context.Context, o interface{}) ([
 			return nil, err
 		}
 		for _, rule := range resp.Rules {
+			// Check if this is an AWS-managed rule
+			var managedBy *string
+			descResp, descErr := svc.DescribeRule(&cloudwatchevents.DescribeRuleInput{
+				Name:         rule.Name,
+				EventBusName: bus.Name,
+			})
+			if descErr == nil && descResp.ManagedBy != nil {
+				managedBy = descResp.ManagedBy
+			}
+
 			targetResp, err := svc.ListTargetsByRule(&cloudwatchevents.ListTargetsByRuleInput{
 				Rule:         rule.Name,
 				EventBusName: bus.Name,
@@ -56,10 +66,11 @@ func (l *CloudWatchEventsTargetLister) List(_ context.Context, o interface{}) ([
 			}
 			for _, target := range targetResp.Targets {
 				resources = append(resources, &CloudWatchEventsTarget{
-					svc:      svc,
-					Name:     rule.Name,
-					TargetID: target.Id,
-					BusName:  bus.Name,
+					svc:       svc,
+					Name:      rule.Name,
+					TargetID:  target.Id,
+					BusName:   bus.Name,
+					ManagedBy: managedBy,
 				})
 			}
 		}
@@ -69,10 +80,18 @@ func (l *CloudWatchEventsTargetLister) List(_ context.Context, o interface{}) ([
 }
 
 type CloudWatchEventsTarget struct {
-	svc      *cloudwatchevents.CloudWatchEvents
-	TargetID *string `description:"The ID of the target for the rule"`
-	Name     *string `description:"The name of the rule"`
-	BusName  *string `description:"The name of the event bus the rule applies to"`
+	svc       *cloudwatchevents.CloudWatchEvents
+	TargetID  *string `description:"The ID of the target for the rule"`
+	Name      *string `description:"The name of the rule"`
+	BusName   *string `description:"The name of the event bus the rule applies to"`
+	ManagedBy *string
+}
+
+func (r *CloudWatchEventsTarget) Filter() error {
+	if r.ManagedBy != nil {
+		return fmt.Errorf("managed by %s", *r.ManagedBy)
+	}
+	return nil
 }
 
 func (r *CloudWatchEventsTarget) Remove(_ context.Context) error {
