@@ -1,0 +1,28 @@
+service: elasticsearch
+resource: package
+resourceName: ElasticsearchPackage
+scope: account
+sdkPackage: elasticsearchservice
+
+list:
+  strategy: flat
+  operation: DescribePackages
+  pagination: paginator
+  itemsField: PackageDetailsList
+  itemType: PackageDetails
+
+delete:
+  operation: DeletePackage
+  inputFields:
+    - PackageID
+
+fields:
+  - name: PackageID
+    type: "*string"
+    fromList: PackageID
+  - name: PackageName
+    type: "*string"
+    fromList: PackageName
+
+stringRepresentation:
+  field: PackageID
