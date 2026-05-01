@@ -1,0 +1,41 @@
+service: cleanrooms
+resource: privacy-budget-template
+resourceName: CleanRoomsPrivacyBudgetTemplate
+scope: account
+sdkPackage: cleanrooms
+
+list:
+  strategy: nested
+  levels:
+    - operation: ListMemberships
+      pagination: paginator
+      itemsField: MembershipSummaries
+      itemType: MembershipSummary
+      iteratorVar: membership
+    - operation: ListPrivacyBudgetTemplates
+      pagination: paginator
+      itemsField: PrivacyBudgetTemplateSummaries
+      itemType: PrivacyBudgetTemplateSummary
+      iteratorVar: tmpl
+      parentInputMapping:
+        MembershipIdentifier: membership.Id
+
+delete:
+  operation: DeletePrivacyBudgetTemplate
+  inputFields:
+    - MembershipIdentifier
+    - PrivacyBudgetTemplateIdentifier
+
+fields:
+  - name: MembershipIdentifier
+    type: "*string"
+    fromList: membership.Id
+  - name: PrivacyBudgetTemplateIdentifier
+    type: "*string"
+    fromList: tmpl.Id
+  - name: CollaborationId
+    type: "*string"
+    fromList: tmpl.CollaborationId
+
+stringRepresentation:
+  field: PrivacyBudgetTemplateIdentifier

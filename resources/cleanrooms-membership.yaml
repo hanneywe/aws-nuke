@@ -1,0 +1,31 @@
+service: cleanrooms
+resource: membership
+resourceName: CleanRoomsMembership
+scope: account
+sdkPackage: cleanrooms
+
+list:
+  strategy: flat
+  operation: ListMemberships
+  pagination: paginator
+  itemsField: MembershipSummaries
+  itemType: MembershipSummary
+
+delete:
+  operation: DeleteMembership
+  inputFields:
+    - MembershipIdentifier
+
+fields:
+  - name: MembershipIdentifier
+    type: "*string"
+    fromList: Id
+  - name: CollaborationName
+    type: "*string"
+    fromList: CollaborationName
+  - name: CollaborationId
+    type: "*string"
+    fromList: CollaborationId
+
+stringRepresentation:
+  field: MembershipIdentifier

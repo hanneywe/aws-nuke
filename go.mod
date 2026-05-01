@@ -15,6 +15,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/appsync v1.42.3
 	github.com/aws/aws-sdk-go-v2/service/bedrockagentcorecontrol v1.14.1
 	github.com/aws/aws-sdk-go-v2/service/bedrockruntime v1.50.5
+	github.com/aws/aws-sdk-go-v2/service/cleanrooms v1.42.4
 	github.com/aws/aws-sdk-go-v2/service/cloudformation v1.71.8
 	github.com/aws/aws-sdk-go-v2/service/cloudfront v1.44.12
 	github.com/aws/aws-sdk-go-v2/service/cloudtrail v1.55.8
