@@ -1,0 +1,68 @@
+service: batch
+resource: job-definition
+resourceName: BatchJobDefinition
+scope: account
+sdkPackage: batch
+
+list:
+  strategy: flat
+  operation: DescribeJobDefinitions
+  pagination: paginator
+  itemsField: JobDefinitions
+  override: |
+    opts := o.(*nuke.ListerOpts)
+    svc := l.svc
+    if svc == nil {
+        svc = batch.NewFromConfig(*opts.Config)
+    }
+    var resources []resource.Resource
+
+    paginator := batch.NewDescribeJobDefinitionsPaginator(svc, &batch.DescribeJobDefinitionsInput{
+        Status: aws.String("ACTIVE"),
+    })
+
+    for paginator.HasMorePages() {
+        resp, err := paginator.NextPage(ctx)
+        if err != nil {
+            return nil, err
+        }
+
+        for _, jd := range resp.JobDefinitions {
+            resources = append(resources, &BatchJobDefinition{
+                svc:              svc,
+                JobDefinitionArn: jd.JobDefinitionArn,
+                JobDefinitionName: jd.JobDefinitionName,
+                Status:           jd.Status,
+            })
+        }
+    }
+
+    return resources, nil
+
+delete:
+  operation: DeregisterJobDefinition
+  inputFields:
+    - JobDefinitionArn
+  override: |
+    _, err := r.svc.DeregisterJobDefinition(ctx, &batch.DeregisterJobDefinitionInput{
+        JobDefinition: r.JobDefinitionArn,
+    })
+    return err
+
+fields:
+  - name: JobDefinitionArn
+    type: "*string"
+  - name: JobDefinitionName
+    type: "*string"
+  - name: Status
+    type: "*string"
+
+filters:
+  - field: Status
+    operator: equals
+    values:
+      - INACTIVE
+    message: "job definition is inactive"
+
+stringRepresentation:
+  field: JobDefinitionArn
