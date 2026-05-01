@@ -1,0 +1,65 @@
+service: cloudfront
+resource: realtime-log-config
+resourceName: CloudFrontRealtimeLogConfig
+scope: account
+sdkPackage: cloudfront
+
+list:
+  strategy: flat
+  operation: ListRealtimeLogConfigs
+  pagination: none
+  itemsField: Items
+  override: |
+    opts := o.(*nuke.ListerOpts)
+    svc := l.svc
+    if svc == nil {
+        svc = cloudfront.NewFromConfig(*opts.Config)
+    }
+    var resources []resource.Resource
+
+    params := &cloudfront.ListRealtimeLogConfigsInput{
+        MaxItems: aws.Int32(100),
+    }
+
+    for {
+        resp, err := svc.ListRealtimeLogConfigs(ctx, params)
+        if err != nil {
+            return nil, err
+        }
+
+        if resp.RealtimeLogConfigs == nil {
+            break
+        }
+
+        for _, item := range resp.RealtimeLogConfigs.Items {
+            resources = append(resources, &CloudFrontRealtimeLogConfig{
+                svc:          svc,
+                Name:         item.Name,
+                ARN:          item.ARN,
+                SamplingRate: item.SamplingRate,
+            })
+        }
+
+        if resp.RealtimeLogConfigs.NextMarker == nil {
+            break
+        }
+        params.Marker = resp.RealtimeLogConfigs.NextMarker
+    }
+
+    return resources, nil
+
+delete:
+  operation: DeleteRealtimeLogConfig
+  inputFields:
+    - ARN
+
+fields:
+  - name: Name
+    type: "*string"
+  - name: ARN
+    type: "*string"
+  - name: SamplingRate
+    type: "*int64"
+
+stringRepresentation:
+  field: Name

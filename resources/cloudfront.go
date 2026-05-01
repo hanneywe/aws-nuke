@@ -17,4 +17,15 @@ type CloudFrontClient interface {
 		optFns ...func(*cloudfront.Options)) (*cloudfront.UpdateDistributionOutput, error)
 	DeleteDistribution(ctx context.Context, params *cloudfront.DeleteDistributionInput,
 		optFns ...func(*cloudfront.Options)) (*cloudfront.DeleteDistributionOutput, error)
+	ListKeyValueStores(ctx context.Context, params *cloudfront.ListKeyValueStoresInput,
+		optFns ...func(*cloudfront.Options)) (*cloudfront.ListKeyValueStoresOutput, error)
+	DescribeKeyValueStore(ctx context.Context, params *cloudfront.DescribeKeyValueStoreInput,
+		optFns ...func(*cloudfront.Options)) (*cloudfront.DescribeKeyValueStoreOutput, error)
+	DeleteKeyValueStore(ctx context.Context, params *cloudfront.DeleteKeyValueStoreInput,
+		optFns ...func(*cloudfront.Options)) (*cloudfront.DeleteKeyValueStoreOutput, error)
+
+	ListRealtimeLogConfigs(ctx context.Context, params *cloudfront.ListRealtimeLogConfigsInput,
+		optFns ...func(*cloudfront.Options)) (*cloudfront.ListRealtimeLogConfigsOutput, error)
+	DeleteRealtimeLogConfig(ctx context.Context, params *cloudfront.DeleteRealtimeLogConfigInput,
+		optFns ...func(*cloudfront.Options)) (*cloudfront.DeleteRealtimeLogConfigOutput, error)
 }
