@@ -1,0 +1,69 @@
+service: bedrockagentruntime
+resource: session
+resourceName: BedrockAgentRuntimeSession
+scope: account
+sdkPackage: bedrockagentruntime
+
+list:
+  strategy: flat
+  operation: ListSessions
+  pagination: paginator
+  itemsField: SessionSummaries
+  override: |
+    opts := o.(*nuke.ListerOpts)
+    svc := l.svc
+    if svc == nil {
+        svc = bedrockagentruntime.NewFromConfig(*opts.Config)
+    }
+    var resources []resource.Resource
+
+    paginator := bedrockagentruntime.NewListSessionsPaginator(svc, &bedrockagentruntime.ListSessionsInput{
+        MaxResults: aws.Int32(100),
+    })
+
+    for paginator.HasMorePages() {
+        resp, err := paginator.NextPage(ctx)
+        if err != nil {
+            return nil, err
+        }
+
+        for i := range resp.SessionSummaries {
+            session := &resp.SessionSummaries[i]
+            status := string(session.SessionStatus)
+            resources = append(resources, &BedrockAgentRuntimeSession{
+                svc:           svc,
+                SessionId:     session.SessionId,
+                SessionArn:    session.SessionArn,
+                SessionStatus: &status,
+                CreatedAt:     session.CreatedAt,
+                LastUpdatedAt: session.LastUpdatedAt,
+            })
+        }
+    }
+
+    return resources, nil
+
+delete:
+  operation: DeleteSession
+  inputFields:
+    - SessionId
+  override: |
+    _, err := r.svc.DeleteSession(ctx, &bedrockagentruntime.DeleteSessionInput{
+        SessionIdentifier: r.SessionId,
+    })
+    return err
+
+fields:
+  - name: SessionId
+    type: "*string"
+  - name: SessionArn
+    type: "*string"
+  - name: SessionStatus
+    type: "*string"
+  - name: CreatedAt
+    type: "*time.Time"
+  - name: LastUpdatedAt
+    type: "*time.Time"
+
+stringRepresentation:
+  field: SessionId
